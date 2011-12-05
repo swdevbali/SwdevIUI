@@ -234,6 +234,9 @@ Public Class Utils
     Shared Sub fillComboBox(ByVal comboBox As ComboBox, ByVal value As String, ByVal description As String, ByVal table As String, ByVal firstitem As String)
         Dim dt As New DataTable
         Utils.executeSP("proc_cbofill", New Object() {value, description, table}, dt)
+        If comboBox.DataSource IsNot Nothing Then
+            comboBox.DataSource = Nothing
+        End If
         comboBox.Items.Clear()
 
         Dim VDP_Array As New ArrayList

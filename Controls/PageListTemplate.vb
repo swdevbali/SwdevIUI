@@ -48,6 +48,10 @@ Public Class PageListTemplate
         Dim popUp As PopupWindow = New PopupWindow
         popUp.pnlUtama.Controls.Clear()
         popUp.pnlUtama.Controls.Add(FormEntry)
+        Dim lastrow As Integer = -1
+        If dgvList.CurrentRow IsNot Nothing Then
+            lastrow = dgvList.CurrentRow.Cells(0).RowIndex
+        End If
         Dim newsize As Size = Drawing.Size.Add(FormEntry.Size, New Size(12, 20))
         If newsize.Width < 500 Then newsize.Width = 520
         FormEntry.PROCEDURE_MASTER = PROCEDURE_MASTER
@@ -62,6 +66,9 @@ Public Class PageListTemplate
         If FormEntry.result = DialogResult.OK Then
             'after call
             refreshDataGrid()
+            'TODO : how to select all the newly added row?? :)
+            dgvList.Rows(lastrow).Selected = True
+
         End If
         popUp.Hide()
     End Sub
@@ -80,33 +87,41 @@ Public Class PageListTemplate
         FormEntry.PageList = Me
         FormEntry.PROCEDURE_MASTER = PROCEDURE_MASTER
         Dim kode As String = dgvList.CurrentRow.Cells(0).Value
+        Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
         FormEntry.prepareForEdit(kode)
         popUp.Text = Application.ProductName
         popUp.Size = newsize
         popUp.ShowDialog()
         If FormEntry.result = DialogResult.OK Then
             'after call
+
             refreshDataGrid()
+            dgvList.Rows(lastrow).Selected = True
         End If
         popUp.Hide()
     End Sub
 
 
     Private Sub btnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDel.Click
-        Dim kode As String = dgvList.CurrentRow.Cells(0).Value
-        Dim nama As String = dgvList.CurrentRow.Cells(1).Value
+        Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
+        Dim kode As String = dgvList.CurrentRow.Cells(0).Value.ToString
+        Dim nama As String = dgvList.CurrentRow.Cells(1).Value.ToString
         Dim retval As Integer = MessageBox.Show("Apakah anda yakin akan menghapus " & kode & " - " & nama & " ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
         If retval = DialogResult.Yes Then
             prepareDeleteParameter(kode)
             If Utils.exec_SP(PROCEDURE_MASTER, DELETE_PARAMETER) Then
-                MessageBox.Show("Data berhasil dihapus.")
-                Utils.exec_SP("proc_zloguser", New Object() {PROCEDURE_MASTER & "|delete", kode, Session.vusername})
+                'MessageBox.Show("Data berhasil dihapus.")
+                Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|delete", kode, Session.vusername})
+                refreshDataGrid()
+                lastrow = lastrow - 1
+                If lastrow < 0 Then lastrow = 0
+                dgvList.Rows(lastrow).Selected = True
             Else
                 MessageBox.Show("Data gagal dihapus.")
             End If
 
         End If
-        refreshDataGrid()
+
 
     End Sub
     'TOFIX. Now let convert Master dokter into this
@@ -142,7 +157,13 @@ Public Class PageListTemplate
     End Sub
     Public Overrides Sub Refresh()
         MyBase.Refresh()
+        Dim lastrow As Integer = -1
+        If dgvList.CurrentRow IsNot Nothing Then
+            lastrow = dgvList.CurrentRow.Cells(0).RowIndex
+        End If
         refreshDataGrid()
+        'todo : still refreshing the 2nd item will make it on top
+        If lastrow >= 0 Then dgvList.Rows(lastrow).Selected = True
     End Sub
     Public Overrides Sub refreshDataGrid()
         MyBase.refreshDataGrid()

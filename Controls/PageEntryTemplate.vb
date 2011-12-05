@@ -107,10 +107,17 @@ Public Class PageEntryTemplate
                     c.Text = ""
                 ElseIf TypeOf c Is ComboBox Then
                     Dim cmb As ComboBox = c
-                    cmb.Text = ""
+                    If cmb.Items.Count > 0 Then cmb.SelectedIndex = 0 '                    cmb.Text = ""
                 ElseIf TypeOf c Is DateTimePicker Then
                     Dim dt As DateTimePicker = c
-                    dt.Value = Now
+                    'kasus harus check dulu sebelum milh date
+                    If dt.ShowCheckBox Then
+                        dt.Checked = False
+                        dt.CustomFormat = " "
+                    Else
+                        dt.Value = Now
+                    End If
+
                 End If
             Next
         Next
@@ -123,13 +130,22 @@ Public Class PageEntryTemplate
                         If (TypeOf (c) Is TextBox Or TypeOf (c) Is ComboBox Or TypeOf (c) Is DateTimePicker) Then
                             If TypeOf (c) Is DateTimePicker Then
                                 Dim tggl As DateTimePicker = c
-                                tggl.Value = dt.Rows(0).Item(c.Tag).ToString
+                                Try
+                                    tggl.Value = dt.Rows(0).Item(c.Tag).ToString
+                                    If tggl.ShowCheckBox Then tggl.Checked = True
+                                Catch ex As InvalidCastException
+                                    tggl.CustomFormat = " "
+                                End Try
                             ElseIf TypeOf (c) Is ComboBox Then
                                 Dim cbo As ComboBox = c
                                 'cbo.Text = dt.Rows(0).Item(c.Tag).ToString
-                                For Each o As ValueDescriptionPair In cbo.Items
-                                    If o.Value.ToString.Equals(dt.Rows(0).Item(c.Tag).ToString) Then cbo.SelectedItem = o
-                                Next
+                                If TypeOf (cbo.Items(0)) Is ValueDescriptionPair Then
+                                    For Each o As ValueDescriptionPair In cbo.Items
+                                        If o.Value.ToString.Equals(dt.Rows(0).Item(c.Tag).ToString) Then cbo.SelectedItem = o
+                                    Next
+                                Else
+                                    cbo.Text = dt.Rows(0).Item(c.Tag).ToString
+                                End If
                             Else
                                 c.Text = dt.Rows(0).Item(c.Tag)
                             End If
