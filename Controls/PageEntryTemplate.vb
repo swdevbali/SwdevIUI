@@ -139,7 +139,7 @@ Public Class PageEntryTemplate
                             ElseIf TypeOf (c) Is ComboBox Then
                                 Dim cbo As ComboBox = c
                                 'cbo.Text = dt.Rows(0).Item(c.Tag).ToString
-                                If TypeOf (cbo.Items(0)) Is ValueDescriptionPair Then
+                                If cbo.Items.Count > 0 AndAlso TypeOf (cbo.Items(0)) Is ValueDescriptionPair Then
                                     For Each o As ValueDescriptionPair In cbo.Items
                                         If o.Value.ToString.Equals(dt.Rows(0).Item(c.Tag).ToString) Then cbo.SelectedItem = o
                                     Next
