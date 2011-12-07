@@ -79,33 +79,15 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ValueDescriptionPair.vb" />
     <Compile Include="EventBroadcaster.vb" />
-    <Compile Include="Pages\DatabaseSettingsPage.Designer.vb">
-      <DependentUpon>DatabaseSettingsPage.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\DatabaseSettingsPage.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Reporting\clsReportPreview.vb" />
     <Compile Include="Controls\BreadCrumb.Designer.vb">
       <DependentUpon>BreadCrumb.vb</DependentUpon>
     </Compile>
     <Compile Include="Controls\BreadCrumb.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\PageEntryTemplate.Designer.vb">
-      <DependentUpon>PageEntryTemplate.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\PageEntryTemplate.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Controls\PageFactory.vb" />
-    <Compile Include="Controls\PageListTemplate.Designer.vb">
-      <DependentUpon>PageListTemplate.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\PageListTemplate.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Controls\Pages.vb" />
     <Compile Include="Controls\PageTemplate.Designer.vb">
       <DependentUpon>PageTemplate.vb</DependentUpon>
@@ -114,7 +96,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\Validation.vb" />
-    <Compile Include="Eufrat\Eufrat.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -130,18 +111,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Reporting\ReportViewerPage.Designer.vb">
-      <DependentUpon>ReportViewerPage.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Reporting\ReportViewerPage.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Window\PopupWindow.Designer.vb">
-      <DependentUpon>PopupWindow.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Window\PopupWindow.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Session.vb" />
     <Compile Include="Utils.vb" />
   </ItemGroup>
@@ -149,29 +118,14 @@
     <EmbeddedResource Include="Controls\BreadCrumb.resx">
       <DependentUpon>BreadCrumb.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\PageEntryTemplate.resx">
-      <DependentUpon>PageEntryTemplate.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\PageListTemplate.resx">
-      <DependentUpon>PageListTemplate.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\PageTemplate.resx">
       <DependentUpon>PageTemplate.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\DatabaseSettingsPage.resx">
-      <DependentUpon>DatabaseSettingsPage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reporting\ReportViewerPage.resx">
-      <DependentUpon>ReportViewerPage.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\PopupWindow.resx">
-      <DependentUpon>PopupWindow.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -566,6 +520,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zoom_out_magnifier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Eufrat\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

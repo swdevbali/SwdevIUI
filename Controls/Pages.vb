@@ -13,7 +13,7 @@
                 'AddHandler page.MouseDown, AddressOf EntryWindow.Form1_MouseDown 'so we can drag window by dragging the page
 
                 Dim page As PageTemplate
-                If className.StartsWith("SwdevIUI") Then
+                If className.StartsWith("SwdevIUI.") Then
                     Dim classType As Type = Type.GetType(className)
                     page = CType(Activator.CreateInstance(classType), PageTemplate) 'directcast
                 Else

@@ -13,10 +13,7 @@
     Public Shared vrolename As String
     Public Shared kodeRole As Integer
 
-    Public Shared vclickedmenu As String
-
-    Public Shared vinttemp As Integer
-    Public Shared vstrtemp As String
+   
 
     Public Shared vusername As String
     Public Shared valamat As String
