@@ -1,3 +1,6 @@
-/bin
-/obj
-*.swp
+SwdevEufrat/bin/*
+SwdevEufrat/obj/*
+SwdevIUICore/bin/*
+SwdevIUICore/obj/*
+SwdevIUIDatabase/bin/*
+SwdevIUIDatabase/obj/*
