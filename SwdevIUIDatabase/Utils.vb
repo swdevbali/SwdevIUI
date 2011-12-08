@@ -1,6 +1,7 @@
 ﻿Imports NetToolMysql_v12
 Imports System.Windows.Forms
-Imports SwdevIUI
+Imports SwdevIUIDatabase
+Imports SwdevIUICore
 
 Public Class Utils
 

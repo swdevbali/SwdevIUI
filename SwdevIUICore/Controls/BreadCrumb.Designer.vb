@@ -28,7 +28,7 @@ Partial Class BreadCrumb
         '
         'imgHome
         '
-        Me.imgHome.Image = Global.SwdevIUIcore.My.Resources.Resources.home
+        Me.imgHome.Image = Global.SwdevIUICore.My.Resources.Resources.home
         Me.imgHome.Location = New System.Drawing.Point(0, 3)
         Me.imgHome.Name = "imgHome"
         Me.imgHome.Size = New System.Drawing.Size(24, 24)

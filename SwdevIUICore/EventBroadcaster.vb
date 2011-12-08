@@ -4,7 +4,7 @@
     Public Shared name As String
 
 
-    Shared Sub doEnterReportPage(ByVal page As SwdevIUIcore.PageTemplate)
+    Shared Sub doEnterReportPage(ByVal page As SwdevIUICore.PageTemplate)
         RaiseEvent EnterReportPage(page, Nothing)
     End Sub
 

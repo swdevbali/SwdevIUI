@@ -1,7 +1,8 @@
-﻿
+﻿Imports SwdevIUICore
+
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class PageListTemplate
-    Inherits SwdevIUI.PageTemplate
+    Inherits PageTemplate
 
     'UserControl overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _

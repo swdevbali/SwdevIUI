@@ -1,6 +1,6 @@
 ﻿Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
-Imports SwdevIUI
+Imports SwdevIUICore
 
 Public Class clsReportPreview
     Dim rep As New ReportDocument
@@ -25,7 +25,7 @@ Public Class clsReportPreview
         report.CrystalReportViewer1.ReportSource = rep
         RaiseEvent EnterReportPage(report, New EventArgs()) 'EventBroadcaster.doEnterReportPage(report)
     End Sub
-   
+
     Public Sub SetParameter(ByVal sParameterName As String, ByVal sValue As String)
         Dim value As ParameterDiscreteValue
         Dim crParameterField As ParameterField

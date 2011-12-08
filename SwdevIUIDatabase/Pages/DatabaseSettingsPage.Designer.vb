@@ -1,4 +1,4 @@
-﻿Imports SwdevIUI
+﻿Imports SwdevIUICore
 
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _

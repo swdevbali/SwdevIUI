@@ -1,5 +1,6 @@
 ﻿Imports System.Windows.Forms
-Imports SwdevIUI
+Imports SwdevIUIDatabase
+Imports SwdevIUICore
 
 Public Class PageEntryTemplate
     Inherits PageTemplate
@@ -68,7 +69,10 @@ Public Class PageEntryTemplate
         prepareInsertParameter()
         If Utils.exec_SP(PROCEDURE_MASTER, INSERT_PARAMETER) Then
             'MessageBox.Show("Data berhasil ditambahkan.")
-            Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|add", INSERT_PARAMETER(2), Session.vusername})
+            Dim kodeTransaksi As String
+            If INSERT_PARAMETER(2) IsNot Nothing Then kodeTransaksi = INSERT_PARAMETER(2) Else kodeTransaksi = INSERT_PARAMETER(1)
+
+            Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|add", kodeTransaksi, Session.vusername})
         Else
             MessageBox.Show("Data gagal ditambahkan.")
         End If

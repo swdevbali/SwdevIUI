@@ -1,5 +1,4 @@
 ﻿Imports System.Windows.Forms
-Imports SwdevIUI
 
 Public Class PopupWindow
 

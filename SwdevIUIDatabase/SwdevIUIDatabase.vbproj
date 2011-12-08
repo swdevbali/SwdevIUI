@@ -117,7 +117,7 @@
     <Compile Include="Reporting\ReportViewerPage.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SwdevIUIPageFactory.vb" />
+    <Compile Include="SwdevIUIDatabasePageFactory.vb" />
     <Compile Include="Utils.vb" />
     <Compile Include="Window\PopupWindow.Designer.vb">
       <DependentUpon>PopupWindow.vb</DependentUpon>
@@ -161,9 +161,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SwdevIUI\SwdevIUI.vbproj">
+    <ProjectReference Include="..\SwdevIUICore\SwdevIUICore.vbproj">
       <Project>{7F39A7FF-D86F-499A-AB5B-0197B518C5BE}</Project>
-      <Name>SwdevIUI</Name>
+      <Name>SwdevIUICore</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

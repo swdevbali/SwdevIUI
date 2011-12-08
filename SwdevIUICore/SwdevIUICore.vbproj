@@ -9,7 +9,7 @@
     </SchemaVersion>
     <ProjectGuid>{7F39A7FF-D86F-499A-AB5B-0197B518C5BE}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>SwdevIUIcore</RootNamespace>
+    <RootNamespace>SwdevIUICore</RootNamespace>
     <AssemblyName>SwdevIUICore</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>

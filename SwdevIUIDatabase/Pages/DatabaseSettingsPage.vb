@@ -1,5 +1,5 @@
 ﻿Imports System.Windows.Forms
-Imports SwdevIUI
+Imports SwdevIUICore
 
 Public Class DatabaseSettingsPage
     Inherits PageTemplate

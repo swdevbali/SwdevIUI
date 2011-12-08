@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 Imports System.Drawing
-Imports SwdevIUI
+Imports SwdevIUICore
 
 Public Class PageListTemplate
     Inherits PageTemplate
