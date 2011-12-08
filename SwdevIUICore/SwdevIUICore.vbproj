@@ -1,0 +1,528 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{7F39A7FF-D86F-499A-AB5B-0197B518C5BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SwdevIUIcore</RootNamespace>
+    <AssemblyName>SwdevIUICore</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>SwdevIUICore.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>SwdevIUICore.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="gLabel">
+      <HintPath>Dependencies\gLabel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\ValueDescriptionPair.vb" />
+    <Compile Include="EventBroadcaster.vb" />
+    <Compile Include="Controls\BreadCrumb.Designer.vb">
+      <DependentUpon>BreadCrumb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BreadCrumb.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PageFactory.vb" />
+    <Compile Include="Controls\Pages.vb" />
+    <Compile Include="Controls\PageTemplate.Designer.vb">
+      <DependentUpon>PageTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PageTemplate.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Validation.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Session.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\BreadCrumb.resx">
+      <DependentUpon>BreadCrumb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PageTemplate.resx">
+      <DependentUpon>PageTemplate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1tambah.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3hapus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4tutup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5kunci.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7cari.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\302115_10150333082771234_574376233_8225575_450075609_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\302115_10150333082771234_574376233_8225575_450075609_n1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\accept_item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_to_favorites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\administrators__1225208187_8508.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\administrators__1225208187_85081.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\airplane.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\airplane1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_view_gallery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_view_gallery1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_down1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_right1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_up1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asterisk_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asterisk_yellow1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attachment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calculator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cekin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment_bubble.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_server.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_server1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dokter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dollar_currency_sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\drive_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\drive_user1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\email_send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\euro_currency_sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hard_disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\headphones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IMG_0086.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IMG_00861.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kamar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\laporan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_arrow1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_arrow2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note_accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pas.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pas1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pasien.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pelangganbaru.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pengobatan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pengobatan2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PERINGKAT-RUMAH-SAKIT-dalam.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\perlengkapan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plane.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PrinterSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\process.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\promotion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove_item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_arrow1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_arrow2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rss_feed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_magnifier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sejarah rekam medis rumah sakit.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\statuskamar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\telephone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tool1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\transaksibaru.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_movie_track.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Vista_icons_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Vista_icons_011.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\world_globe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yen_currency_sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom_in_magnifier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom_out_magnifier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Eufrat\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
