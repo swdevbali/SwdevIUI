@@ -25,10 +25,8 @@ Partial Class DatabaseSettingsPage
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.panelTop = New System.Windows.Forms.Panel()
         Me.tabSettings = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.btnTestKoneksi = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.txtDatabase = New System.Windows.Forms.TextBox()
@@ -46,15 +44,6 @@ Partial Class DatabaseSettingsPage
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'panelTop
-        '
-        Me.panelTop.BackColor = System.Drawing.Color.PaleGoldenrod
-        Me.panelTop.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.panelTop.Location = New System.Drawing.Point(0, 382)
-        Me.panelTop.Name = "panelTop"
-        Me.panelTop.Size = New System.Drawing.Size(851, 36)
-        Me.panelTop.TabIndex = 15
-        '
         'tabSettings
         '
         Me.tabSettings.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
@@ -63,31 +52,21 @@ Partial Class DatabaseSettingsPage
         Me.tabSettings.Location = New System.Drawing.Point(0, 0)
         Me.tabSettings.Name = "tabSettings"
         Me.tabSettings.SelectedIndex = 0
-        Me.tabSettings.Size = New System.Drawing.Size(851, 382)
+        Me.tabSettings.Size = New System.Drawing.Size(851, 418)
         Me.tabSettings.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.tabSettings.TabIndex = 16
         '
         'TabPage1
         '
-        Me.TabPage1.BackColor = System.Drawing.Color.Beige
-        Me.TabPage1.Controls.Add(Me.Label6)
+        Me.TabPage1.BackColor = System.Drawing.Color.White
         Me.TabPage1.Controls.Add(Me.btnTestKoneksi)
         Me.TabPage1.Controls.Add(Me.TableLayoutPanel1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(843, 353)
+        Me.TabPage1.Size = New System.Drawing.Size(843, 389)
         Me.TabPage1.TabIndex = 1
         Me.TabPage1.Text = "Database"
-        '
-        'Label6
-        '
-        Me.Label6.Location = New System.Drawing.Point(20, 167)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(197, 51)
-        Me.Label6.TabIndex = 13
-        Me.Label6.Text = "TODO : status dari koneksi basis data belum bisa diupdate. Untuk hal tersebut, ap" & _
-            "likasi harus direstart"
         '
         'btnTestKoneksi
         '
@@ -133,28 +112,29 @@ Partial Class DatabaseSettingsPage
         Me.txtDatabase.Location = New System.Drawing.Point(113, 87)
         Me.txtDatabase.Name = "txtDatabase"
         Me.txtDatabase.Size = New System.Drawing.Size(84, 20)
-        Me.txtDatabase.TabIndex = 13
+        Me.txtDatabase.TabIndex = 4
         '
         'txtPassword
         '
         Me.txtPassword.Location = New System.Drawing.Point(113, 66)
         Me.txtPassword.Name = "txtPassword"
+        Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(84, 20)
-        Me.txtPassword.TabIndex = 14
+        Me.txtPassword.TabIndex = 3
         '
         'txtUser
         '
         Me.txtUser.Location = New System.Drawing.Point(113, 45)
         Me.txtUser.Name = "txtUser"
         Me.txtUser.Size = New System.Drawing.Size(84, 20)
-        Me.txtUser.TabIndex = 15
+        Me.txtUser.TabIndex = 2
         '
         'txtPort
         '
         Me.txtPort.Location = New System.Drawing.Point(113, 24)
         Me.txtPort.Name = "txtPort"
         Me.txtPort.Size = New System.Drawing.Size(84, 20)
-        Me.txtPort.TabIndex = 16
+        Me.txtPort.TabIndex = 1
         '
         'Label1
         '
@@ -206,7 +186,7 @@ Partial Class DatabaseSettingsPage
         Me.txtHost.Location = New System.Drawing.Point(113, 3)
         Me.txtHost.Name = "txtHost"
         Me.txtHost.Size = New System.Drawing.Size(84, 20)
-        Me.txtHost.TabIndex = 10
+        Me.txtHost.TabIndex = 0
         '
         'DatabaseSettingsPage
         '
@@ -214,7 +194,6 @@ Partial Class DatabaseSettingsPage
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.Controls.Add(Me.tabSettings)
-        Me.Controls.Add(Me.panelTop)
         Me.ImageTitle = Global.SwdevIUIDatabase.My.Resources.Resources.database_server
         Me.Name = "DatabaseSettingsPage"
         Me.Size = New System.Drawing.Size(851, 418)
@@ -226,7 +205,6 @@ Partial Class DatabaseSettingsPage
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents panelTop As System.Windows.Forms.Panel
     Friend WithEvents tabSettings As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
@@ -241,6 +219,5 @@ Partial Class DatabaseSettingsPage
     Friend WithEvents txtUser As System.Windows.Forms.TextBox
     Friend WithEvents txtPort As System.Windows.Forms.TextBox
     Friend WithEvents txtHost As System.Windows.Forms.TextBox
-    Friend WithEvents Label6 As System.Windows.Forms.Label
 
 End Class

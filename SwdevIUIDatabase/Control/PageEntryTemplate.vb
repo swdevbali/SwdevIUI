@@ -70,6 +70,7 @@ Public Class PageEntryTemplate
         If Utils.exec_SP(PROCEDURE_MASTER, INSERT_PARAMETER) Then
             'MessageBox.Show("Data berhasil ditambahkan.")
             Dim kodeTransaksi As String
+            'Actually I don't need this.. <==what a comment :))
             If INSERT_PARAMETER(2) IsNot Nothing Then kodeTransaksi = INSERT_PARAMETER(2) Else kodeTransaksi = INSERT_PARAMETER(1)
 
             Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|add", kodeTransaksi, Session.vusername})
