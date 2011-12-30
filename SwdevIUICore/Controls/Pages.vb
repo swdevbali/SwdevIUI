@@ -31,4 +31,14 @@
         m_page_class.Add(key, className)
     End Sub
 
+    Shared Sub remove(ByVal key As String)
+        Dim page As PageTemplate = m_pages(key.ToLower)
+        If page IsNot Nothing Then
+            page.Dispose()
+            m_pages.Remove(key)
+        End If
+        'back to where? home
+
+    End Sub
+
 End Class
