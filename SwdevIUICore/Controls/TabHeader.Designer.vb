@@ -27,7 +27,8 @@ Partial Class TabHeader
         '
         'tablePage
         '
-        Me.tablePage.ColumnCount = 2
+        Me.tablePage.ColumnCount = 3
+        Me.tablePage.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
         Me.tablePage.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
         Me.tablePage.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.tablePage.Dock = System.Windows.Forms.DockStyle.Fill
