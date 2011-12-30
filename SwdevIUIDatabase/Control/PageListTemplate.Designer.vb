@@ -223,7 +223,7 @@ Partial Class PageListTemplate
     Friend WithEvents btnCetak As System.Windows.Forms.Button
     Friend WithEvents btnDel As System.Windows.Forms.Button
     Friend WithEvents btnEdit As System.Windows.Forms.Button
-    Friend WithEvents dgvList As System.Windows.Forms.DataGridView
+    Public WithEvents dgvList As System.Windows.Forms.DataGridView
     Friend WithEvents btnAdd As System.Windows.Forms.Button
     Friend WithEvents TextKataKunci As System.Windows.Forms.TextBox
     Friend WithEvents ComCariBy As System.Windows.Forms.ComboBox

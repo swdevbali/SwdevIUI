@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports SwdevIUICore
 
 Public Class PopupWindow
 
@@ -11,7 +12,7 @@ Public Class PopupWindow
         pnlUtama.Controls.Clear()
     End Sub
 
-    Sub Add(ByVal FormEntry As PageEntryTemplate)
+    Sub Add(ByVal FormEntry As PageTemplate)
         pnlUtama.Controls.Add(FormEntry)
     End Sub
 

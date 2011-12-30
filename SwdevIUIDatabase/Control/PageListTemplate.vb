@@ -70,6 +70,7 @@ Public Class PageListTemplate
             'after call
             refreshDataGrid()
             'TODO : how to select all the newly added row?? :)
+            If lastrow < 0 Then lastrow = dgvList.Rows.Count - 1
             dgvList.Rows(lastrow).Selected = True
 
         End If
@@ -118,7 +119,7 @@ Public Class PageListTemplate
                 refreshDataGrid()
                 lastrow = lastrow - 1
                 If lastrow < 0 Then lastrow = 0
-                dgvList.Rows(lastrow).Selected = True
+                If dgvList.Rows.Count > 0 Then dgvList.Rows(lastrow).Selected = True
             Else
                 MessageBox.Show("Data gagal dihapus.")
             End If

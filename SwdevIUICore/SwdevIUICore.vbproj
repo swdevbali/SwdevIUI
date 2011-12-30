@@ -73,6 +73,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\TabHeader.Designer.vb">
+      <DependentUpon>TabHeader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TabHeader.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\ValueDescriptionPair.vb" />
     <Compile Include="EventBroadcaster.vb" />
     <Compile Include="Controls\BreadCrumb.Designer.vb">
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PageTemplate.resx">
       <DependentUpon>PageTemplate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TabHeader.resx">
+      <DependentUpon>TabHeader.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -516,6 +525,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Eufrat\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

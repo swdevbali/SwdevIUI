@@ -20,4 +20,6 @@
     Public Shared vtelepon As String
     Public Shared vfax As String
 
+    Public Shared Property serverberkas As String
+
 End Class

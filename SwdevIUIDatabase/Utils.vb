@@ -233,7 +233,7 @@ Public Class Utils
     '    My.Settings.Save()
     'End Sub
 
-    Shared Sub fillComboBox(ByVal comboBox As ComboBox, ByVal value As String, ByVal description As String, ByVal table As String, ByVal firstitem As String)
+    Shared Sub fillComboBox(ByVal comboBox As ComboBox, ByVal value As Object, ByVal description As Object, ByVal table As String, ByVal firstitem As String)
         Dim dt As New DataTable
         Utils.executeSP("proc_cbofill", New Object() {value, description, table}, dt)
         If comboBox.DataSource IsNot Nothing Then
@@ -242,7 +242,7 @@ Public Class Utils
         comboBox.Items.Clear()
 
         Dim VDP_Array As New ArrayList
-        VDP_Array.Add(New ValueDescriptionPair("-1", firstitem))
+        VDP_Array.Add(New ValueDescriptionPair(Nothing, firstitem))
         For Each row As DataRow In dt.Rows
             VDP_Array.Add(New ValueDescriptionPair(row(0), row(1)))
         Next
