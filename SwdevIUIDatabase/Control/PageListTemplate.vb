@@ -29,6 +29,8 @@ Public Class PageListTemplate
 
     Property HideFirstColumn As Boolean = True
 
+    Property isEntryEmbedded As Boolean
+
     Public Sub RefreshTablePencarian(ByVal namakolom As String, ByVal katakunci As String)
         Dim dt As New DataTable
         'Dim dsrole As New DataSet
@@ -46,63 +48,85 @@ Public Class PageListTemplate
 
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
 
-        'case if using popup
-        Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
-        Dim popUp As PopupWindow = New PopupWindow
-        popUp.pnlUtama.Controls.Clear()
-        popUp.pnlUtama.Controls.Add(FormEntry)
-        Dim lastrow As Integer = -1
-        If dgvList.CurrentRow IsNot Nothing Then
-            lastrow = dgvList.CurrentRow.Cells(0).RowIndex
-        End If
-        Dim newsize As Size = Drawing.Size.Add(FormEntry.Size, New Size(12, 20))
-        If newsize.Width < 500 Then newsize.Width = 520
-        FormEntry.PROCEDURE_MASTER = PROCEDURE_MASTER
-        FormEntry.Dock = DockStyle.Fill
-        FormEntry.FormMode = PageEntryTemplate.FormModeEnum.ADD
-        FormEntry.PageList = Me
-        FormEntry.prepareForAddition()
-        popUp.Text = Application.ProductName
-        popUp.Size = newsize
+        If Not isEntryEmbedded Then
 
-        popUp.ShowDialog()
-        If FormEntry.result = DialogResult.OK Then
-            'after call
-            refreshDataGrid()
-            'TODO : how to select all the newly added row?? :)
-            If lastrow < 0 Then lastrow = dgvList.Rows.Count - 1
-            dgvList.Rows(lastrow).Selected = True
 
+            'case if using popup
+            Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
+            Dim popUp As PopupWindow = New PopupWindow
+            popUp.pnlUtama.Controls.Clear()
+            popUp.pnlUtama.Controls.Add(FormEntry)
+            Dim lastrow As Integer = -1
+            If dgvList.CurrentRow IsNot Nothing Then
+                lastrow = dgvList.CurrentRow.Cells(0).RowIndex
+            End If
+            Dim newsize As Size = Drawing.Size.Add(FormEntry.Size, New Size(12, 20))
+            If newsize.Width < 500 Then newsize.Width = 520
+            FormEntry.PROCEDURE_MASTER = PROCEDURE_MASTER
+            FormEntry.Dock = DockStyle.Fill
+            FormEntry.FormMode = PageEntryTemplate.FormModeEnum.ADD
+            FormEntry.InstancePageTemplate = Me
+            FormEntry.prepareForAddition()
+            popUp.Text = Application.ProductName
+            popUp.Size = newsize
+
+            popUp.ShowDialog()
+            If FormEntry.result = DialogResult.OK Then
+                'after call
+                refreshDataGrid()
+                'TODO : how to select all the newly added row?? :)
+                If lastrow < 0 Then lastrow = dgvList.Rows.Count - 1
+                dgvList.Rows(lastrow).Selected = True
+
+            End If
+            popUp.Hide()
+        Else
+
+            Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
+            FormEntry.FormMode = PageEntryTemplate.FormModeEnum.ADD
+            FormEntry.prepareForAddition()
+            FormEntry.Enabled = True
+            FormEntry.prepareFirstFocus()
+            pnlKonfirmasi.Visible = True
         End If
-        popUp.Hide()
     End Sub
 
     Private Sub btnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEdit.Click
+        If Not isEntryEmbedded Then
+            'case if using popup
+            Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
+            Dim popUp As PopupWindow = New PopupWindow
+            popUp.pnlUtama.Controls.Clear()
+            popUp.pnlUtama.Controls.Add(FormEntry)
+            Dim newsize As Size = Drawing.Size.Add(FormEntry.Size, New Size(12, 20))
+            If newsize.Width < 500 Then newsize.Width = 520
+            FormEntry.FormMode = PageEntryTemplate.FormModeEnum.EDIT
+            FormEntry.Dock = DockStyle.Fill
+            FormEntry.InstancePageTemplate = Me
+            FormEntry.PROCEDURE_MASTER = PROCEDURE_MASTER
+            Dim kode As String = dgvList.CurrentRow.Cells(0).Value
+            Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
+            FormEntry.prepareForEdit(kode)
+            popUp.Text = Application.ProductName
+            popUp.Size = newsize
+            popUp.ShowDialog()
+            If FormEntry.result = DialogResult.OK Then
+                'after call
 
-        'case if using popup
-        Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
-        Dim popUp As PopupWindow = New PopupWindow
-        popUp.pnlUtama.Controls.Clear()
-        popUp.pnlUtama.Controls.Add(FormEntry)
-        Dim newsize As Size = Drawing.Size.Add(FormEntry.Size, New Size(12, 20))
-        If newsize.Width < 500 Then newsize.Width = 520
-        FormEntry.FormMode = PageEntryTemplate.FormModeEnum.EDIT
-        FormEntry.Dock = DockStyle.Fill
-        FormEntry.PageList = Me
-        FormEntry.PROCEDURE_MASTER = PROCEDURE_MASTER
-        Dim kode As String = dgvList.CurrentRow.Cells(0).Value
-        Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
-        FormEntry.prepareForEdit(kode)
-        popUp.Text = Application.ProductName
-        popUp.Size = newsize
-        popUp.ShowDialog()
-        If FormEntry.result = DialogResult.OK Then
-            'after call
+                refreshDataGrid()
+                dgvList.Rows(lastrow).Selected = True
+            End If
+            popUp.Hide()
+        Else
+            Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
+            Dim kode As String = dgvList.CurrentRow.Cells(0).Value
+            Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
+            FormEntry.FormMode = PageEntryTemplate.FormModeEnum.EDIT
+            FormEntry.prepareForEdit(kode)
+            FormEntry.Enabled = True
+            FormEntry.prepareFirstFocus()
 
-            refreshDataGrid()
-            dgvList.Rows(lastrow).Selected = True
         End If
-        popUp.Hide()
     End Sub
 
 
@@ -188,7 +212,9 @@ Public Class PageListTemplate
         btnEdit.Visible = showEditButton
         btnDel.Visible = showDeleteButton
         btnCetak.Visible = showCetakButton
+        prepareDisplay()
         refreshDataGrid()
+
     End Sub
 
     Overridable Sub prepareDeleteParameter(ByVal kode As String)
@@ -246,5 +272,51 @@ Public Class PageListTemplate
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         Timer1.Enabled = False
         dgvList.Focus()
+    End Sub
+
+    Public Sub prepareDisplay()
+        If isEntryEmbedded Then
+            pnlForm.Visible = True
+            Dim entryForm As PageTemplate = Pages.Item(FORM_ENTRY_NAME)
+            entryForm.Dock = DockStyle.Fill
+            pnlForm.Size = entryForm.Size
+            entryForm.Enabled = False 'start with disable state
+            pnlForm.Controls.Add(entryForm)
+        Else
+            pnlForm.Visible = False
+        End If
+    End Sub
+
+
+    Private Sub dgvList_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvList.SelectionChanged
+        If dgvList.CurrentRow IsNot Nothing AndAlso isEntryEmbedded Then
+            Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
+            Dim kode As String = dgvList.CurrentRow.Cells(0).Value
+            Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
+            FormEntry.PROCEDURE_MASTER = PROCEDURE_MASTER
+            FormEntry.prepareForEdit(kode)
+        End If
+    End Sub
+
+    Sub selectGrid()
+        dgvList_SelectionChanged(dgvList, Nothing)
+    End Sub
+
+    Private Sub btnSaveAndClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveAndClose.Click
+        'make sure isembed
+        If isEntryEmbedded Then
+            Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
+            FormEntry.btnSaveAndClose_Click(Nothing, Nothing)
+            pnlKonfirmasi.Visible = False
+        End If
+    End Sub
+
+    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
+        'make sure isembed
+        If isEntryEmbedded Then
+            Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
+            FormEntry.btnCancel_Click_1(Nothing, Nothing)
+            pnlKonfirmasi.Visible = False
+        End If
     End Sub
 End Class

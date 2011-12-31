@@ -27,6 +27,7 @@ Partial Class TabHeader
         '
         'flowPanel
         '
+        Me.flowPanel.AutoScroll = True
         Me.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flowPanel.Location = New System.Drawing.Point(0, 0)
         Me.flowPanel.Name = "flowPanel"

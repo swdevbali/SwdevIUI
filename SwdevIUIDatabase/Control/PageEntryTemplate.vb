@@ -10,6 +10,7 @@ Public Class PageEntryTemplate
     Property PROCEDURE_MASTER As String 'copy from pagelistmaster
     Property CONTROL_CONTAINER As Control()
     Dim idkodelama As String
+
     Public Enum FormModeEnum
         ADD
         EDIT
@@ -23,8 +24,8 @@ Public Class PageEntryTemplate
 
     End Sub
 
-    Property PageList As PageTemplate
-
+    Property InstancePageTemplate As PageTemplate
+    Property InstancePageListTemplate As PageListTemplate
 
     Property FormMode As FormModeEnum
 
@@ -35,6 +36,8 @@ Public Class PageEntryTemplate
     Property UPDATE_PARAMETER As Object()
 
     Public Property result As DialogResult
+
+
 
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frm As Form = Parent.Parent
@@ -50,15 +53,25 @@ Public Class PageEntryTemplate
     Private Sub PageEntryTemplate_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If ImageTitle IsNot Nothing Then picTitle.Image = ImageTitle
         lblTitle.Text = Title
+        If InstancePageListTemplate IsNot Nothing AndAlso InstancePageListTemplate.isEntryEmbedded Then
+            btnSaveAndClose.Visible = False
+            btnCancel.Visible = False
+        End If
     End Sub
 
-    Private Sub btnSaveAndClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveAndClose.Click
+    Public Sub btnSaveAndClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveAndClose.Click
         If FormMode = FormModeEnum.ADD Then
             doInsertNewData()
         Else
             doUpdateData()
         End If
         result = DialogResult.OK
+        If InstancePageListTemplate.isEntryEmbedded Then
+            InstancePageListTemplate.refreshDataGrid()
+            InstancePageListTemplate.dgvList.Focus()
+            Me.Enabled = False
+            InstancePageListTemplate.selectGrid()
+        End If
         'Me.ParentForm.Hide()
     End Sub
 
@@ -87,7 +100,7 @@ Public Class PageEntryTemplate
         prepareFirstFocus()
         prepareForAddition()
         newItemAdded = True
-        PageList.refreshDataGrid()
+        InstancePageListTemplate.refreshDataGrid()
     End Sub
 
     Overridable Sub prepareFirstFocus()
@@ -130,6 +143,9 @@ Public Class PageEntryTemplate
         Next
     End Sub
     Protected Sub fillEditValue(ByVal dt As DataTable)
+        If dt.Rows.Count = 0 Then
+            Return
+        End If
         For Each Container As Control In CONTROL_CONTAINER
             For Each c As Control In Container.Controls
                 If c.Tag IsNot Nothing AndAlso c.Tag <> "" Then
@@ -177,7 +193,7 @@ Public Class PageEntryTemplate
         'End If
     End Sub
 
-    Private Sub btnCancel_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
+    Public Sub btnCancel_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
         If Not newItemAdded Then
             ParentForm.DialogResult = DialogResult.Cancel
             result = DialogResult.Cancel
@@ -186,7 +202,13 @@ Public Class PageEntryTemplate
             result = DialogResult.OK
         End If
         newItemAdded = False
-        ParentForm.Hide()
+        If InstancePageListTemplate IsNot Nothing AndAlso Not InstancePageListTemplate.isEntryEmbedded Then
+            ParentForm.Hide()
+        Else
+            Me.Enabled = False
+            InstancePageListTemplate.dgvList.Focus()
+            InstancePageListTemplate.selectGrid()
+        End If
     End Sub
 
     Overridable Sub prepareSelectSingleRowParameter(ByVal kode As String)

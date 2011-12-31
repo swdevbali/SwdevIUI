@@ -4,14 +4,9 @@
     Public Shared m_pageFactoryHash As New Hashtable
     Shared ReadOnly Property Item(ByVal key As String) As PageTemplate
         Get
-            'at last, only instantiate when needed
             'borrowed from http://www.codeproject.com/KB/vb/DynamicFactoryDemo.aspx
             Dim className As String = m_page_class(key)
             If m_pages(key) Is Nothing And className IsNot Nothing Then
-                'Dim classType As Type = Type.GetType(className)
-                'Dim page As PageTemplate = CType(Activator.CreateInstance(classType), PageTemplate) 'directcast
-                'AddHandler page.MouseDown, AddressOf EntryWindow.Form1_MouseDown 'so we can drag window by dragging the page
-
                 Dim page As PageTemplate
                 If className.StartsWith("SwdevIUICore.") Then
                     Dim classType As Type = Type.GetType(className)
@@ -25,8 +20,8 @@
             End If
             Return m_pages(key)
         End Get
-
     End Property
+
     Shared Sub add(ByVal key As String, ByVal className As String)
         m_page_class.Add(key, className)
     End Sub
@@ -34,8 +29,8 @@
     Shared Sub remove(ByVal key As String)
         Dim page As PageTemplate = m_pages(key.ToLower)
         If page IsNot Nothing Then
-            page.Dispose()
-            m_pages.Remove(key)
+            'page.Dispose()
+            'm_pages.Remove(key)
         End If
         'back to where? home
 

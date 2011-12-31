@@ -39,7 +39,7 @@ Partial Class PageEntryTemplate
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.Color.Beige
+        Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.Controls.Add(Me.lblTitle)
         Me.Panel1.Controls.Add(Me.picTitle)
         Me.Panel1.Controls.Add(Me.btnCancel)
@@ -112,13 +112,14 @@ Partial Class PageEntryTemplate
         Me.btnSaveAndAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSaveAndAdd.Image = Global.SwdevIUIDatabase.My.Resources.Resources._1tambah
         Me.btnSaveAndAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSaveAndAdd.Location = New System.Drawing.Point(569, 5)
+        Me.btnSaveAndAdd.Location = New System.Drawing.Point(448, 6)
         Me.btnSaveAndAdd.Name = "btnSaveAndAdd"
         Me.btnSaveAndAdd.Size = New System.Drawing.Size(114, 31)
         Me.btnSaveAndAdd.TabIndex = 1
         Me.btnSaveAndAdd.Text = "Save and &Add"
         Me.btnSaveAndAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnSaveAndAdd.UseVisualStyleBackColor = True
+        Me.btnSaveAndAdd.Visible = False
         '
         'btnSaveAndClose
         '
@@ -130,7 +131,7 @@ Partial Class PageEntryTemplate
         Me.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSaveAndClose.Image = Global.SwdevIUIDatabase.My.Resources.Resources.accept_item
         Me.btnSaveAndClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSaveAndClose.Location = New System.Drawing.Point(448, 5)
+        Me.btnSaveAndClose.Location = New System.Drawing.Point(568, 6)
         Me.btnSaveAndClose.Name = "btnSaveAndClose"
         Me.btnSaveAndClose.Size = New System.Drawing.Size(115, 31)
         Me.btnSaveAndClose.TabIndex = 0

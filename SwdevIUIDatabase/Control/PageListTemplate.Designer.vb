@@ -31,15 +31,20 @@ Partial Class PageListTemplate
         Me.dgvList = New System.Windows.Forms.DataGridView()
         Me.TextKataKunci = New System.Windows.Forms.TextBox()
         Me.ComCariBy = New System.Windows.Forms.ComboBox()
-        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.pnlTop = New System.Windows.Forms.Panel()
         Me.btnCetak = New System.Windows.Forms.Button()
         Me.btnDel = New System.Windows.Forms.Button()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.pnlForm = New System.Windows.Forms.Panel()
+        Me.pnlKonfirmasi = New System.Windows.Forms.Panel()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnSaveAndClose = New System.Windows.Forms.Button()
         CType(Me.dgvList, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel4.SuspendLayout()
+        Me.pnlTop.SuspendLayout()
+        Me.pnlKonfirmasi.SuspendLayout()
         Me.SuspendLayout()
         '
         'dgvList
@@ -47,9 +52,9 @@ Partial Class PageListTemplate
         Me.dgvList.AllowUserToAddRows = False
         Me.dgvList.AllowUserToDeleteRows = False
         Me.dgvList.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.CadetBlue
         Me.dgvList.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvList.BackgroundColor = System.Drawing.Color.Beige
+        Me.dgvList.BackgroundColor = System.Drawing.Color.LightSkyBlue
         Me.dgvList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
         Me.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -64,7 +69,7 @@ Partial Class PageListTemplate
         Me.dgvList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.dgvList.EnableHeadersVisualStyles = False
         Me.dgvList.GridColor = System.Drawing.Color.DarkKhaki
-        Me.dgvList.Location = New System.Drawing.Point(0, 47)
+        Me.dgvList.Location = New System.Drawing.Point(0, 147)
         Me.dgvList.MultiSelect = False
         Me.dgvList.Name = "dgvList"
         Me.dgvList.ReadOnly = True
@@ -81,7 +86,7 @@ Partial Class PageListTemplate
         Me.dgvList.RowHeadersVisible = False
         Me.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvList.ShowEditingIcon = False
-        Me.dgvList.Size = New System.Drawing.Size(856, 477)
+        Me.dgvList.Size = New System.Drawing.Size(856, 377)
         Me.dgvList.TabIndex = 34
         '
         'TextKataKunci
@@ -100,21 +105,22 @@ Partial Class PageListTemplate
         Me.ComCariBy.Size = New System.Drawing.Size(132, 21)
         Me.ComCariBy.TabIndex = 23
         '
-        'Panel4
+        'pnlTop
         '
-        Me.Panel4.BackColor = System.Drawing.Color.White
-        Me.Panel4.Controls.Add(Me.btnCetak)
-        Me.Panel4.Controls.Add(Me.btnDel)
-        Me.Panel4.Controls.Add(Me.btnEdit)
-        Me.Panel4.Controls.Add(Me.btnAdd)
-        Me.Panel4.Controls.Add(Me.TextKataKunci)
-        Me.Panel4.Controls.Add(Me.ComCariBy)
-        Me.Panel4.Controls.Add(Me.Label12)
-        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel4.Location = New System.Drawing.Point(0, 0)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(856, 47)
-        Me.Panel4.TabIndex = 33
+        Me.pnlTop.BackColor = System.Drawing.Color.White
+        Me.pnlTop.Controls.Add(Me.pnlKonfirmasi)
+        Me.pnlTop.Controls.Add(Me.btnCetak)
+        Me.pnlTop.Controls.Add(Me.btnDel)
+        Me.pnlTop.Controls.Add(Me.btnEdit)
+        Me.pnlTop.Controls.Add(Me.btnAdd)
+        Me.pnlTop.Controls.Add(Me.TextKataKunci)
+        Me.pnlTop.Controls.Add(Me.ComCariBy)
+        Me.pnlTop.Controls.Add(Me.Label12)
+        Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlTop.Location = New System.Drawing.Point(0, 100)
+        Me.pnlTop.Name = "pnlTop"
+        Me.pnlTop.Size = New System.Drawing.Size(856, 47)
+        Me.pnlTop.TabIndex = 33
         '
         'btnCetak
         '
@@ -206,17 +212,77 @@ Partial Class PageListTemplate
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 800
         '
+        'pnlForm
+        '
+        Me.pnlForm.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlForm.Location = New System.Drawing.Point(0, 0)
+        Me.pnlForm.Name = "pnlForm"
+        Me.pnlForm.Size = New System.Drawing.Size(856, 100)
+        Me.pnlForm.TabIndex = 35
+        '
+        'pnlKonfirmasi
+        '
+        Me.pnlKonfirmasi.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlKonfirmasi.Controls.Add(Me.btnCancel)
+        Me.pnlKonfirmasi.Controls.Add(Me.btnSaveAndClose)
+        Me.pnlKonfirmasi.Location = New System.Drawing.Point(530, 6)
+        Me.pnlKonfirmasi.Name = "pnlKonfirmasi"
+        Me.pnlKonfirmasi.Size = New System.Drawing.Size(321, 38)
+        Me.pnlKonfirmasi.TabIndex = 30
+        Me.pnlKonfirmasi.Visible = False
+        '
+        'btnCancel
+        '
+        Me.btnCancel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.CausesValidation = False
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCancel.FlatAppearance.BorderSize = 0
+        Me.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow
+        Me.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.YellowGreen
+        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCancel.Image = Global.SwdevIUIDatabase.My.Resources.Resources._4tutup
+        Me.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnCancel.Location = New System.Drawing.Point(128, 4)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(75, 31)
+        Me.btnCancel.TabIndex = 8
+        Me.btnCancel.Text = "&Cancel"
+        Me.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnCancel.UseVisualStyleBackColor = True
+        '
+        'btnSaveAndClose
+        '
+        Me.btnSaveAndClose.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnSaveAndClose.DialogResult = System.Windows.Forms.DialogResult.OK
+        Me.btnSaveAndClose.FlatAppearance.BorderSize = 0
+        Me.btnSaveAndClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow
+        Me.btnSaveAndClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.YellowGreen
+        Me.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSaveAndClose.Image = Global.SwdevIUIDatabase.My.Resources.Resources.accept_item
+        Me.btnSaveAndClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnSaveAndClose.Location = New System.Drawing.Point(6, 3)
+        Me.btnSaveAndClose.Name = "btnSaveAndClose"
+        Me.btnSaveAndClose.Size = New System.Drawing.Size(115, 31)
+        Me.btnSaveAndClose.TabIndex = 7
+        Me.btnSaveAndClose.Text = "&Save and Close"
+        Me.btnSaveAndClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnSaveAndClose.UseVisualStyleBackColor = True
+        '
         'PageListTemplate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.dgvList)
-        Me.Controls.Add(Me.Panel4)
+        Me.Controls.Add(Me.pnlTop)
+        Me.Controls.Add(Me.pnlForm)
         Me.Name = "PageListTemplate"
         Me.Size = New System.Drawing.Size(856, 524)
         CType(Me.dgvList, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel4.ResumeLayout(False)
-        Me.Panel4.PerformLayout()
+        Me.pnlTop.ResumeLayout(False)
+        Me.pnlTop.PerformLayout()
+        Me.pnlKonfirmasi.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -227,8 +293,12 @@ Partial Class PageListTemplate
     Friend WithEvents btnAdd As System.Windows.Forms.Button
     Friend WithEvents TextKataKunci As System.Windows.Forms.TextBox
     Friend WithEvents ComCariBy As System.Windows.Forms.ComboBox
-    Friend WithEvents Panel4 As System.Windows.Forms.Panel
+    Friend WithEvents pnlTop As System.Windows.Forms.Panel
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents pnlForm As System.Windows.Forms.Panel
+    Friend WithEvents pnlKonfirmasi As System.Windows.Forms.Panel
+    Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Friend WithEvents btnSaveAndClose As System.Windows.Forms.Button
 
 End Class
