@@ -46,4 +46,8 @@ Public Class PageTemplate
      
     End Sub
 
+    Overridable Sub prepareEnabled(ByVal enableState As Boolean)
+        Me.Enabled = enableState
+    End Sub
+
 End Class

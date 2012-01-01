@@ -21,8 +21,9 @@ Public Class TabHeader
         Dim linkTab As New LinkLabel
 
         linkTab.Text = view.Title
+        linkTab.LinkBehavior = LinkBehavior.NeverUnderline
         linkTab.TextAlign = Drawing.ContentAlignment.MiddleCenter
-        linkTab.BackColor = Drawing.Color.Transparent
+        linkTab.BackColor = Drawing.Color.LightGray '.Transparent
         AddHandler linkTab.MouseEnter, AddressOf linkHoverIn
         AddHandler linkTab.MouseLeave, AddressOf linkHoverOut
         AddHandler linkTab.Click, AddressOf linkClicked
@@ -43,7 +44,8 @@ Public Class TabHeader
     End Sub
     Sub linkHoverOut(ByVal sender As Object, ByVal e As EventArgs)
         Dim linkTab As LinkLabel = sender
-        If lastLink IsNot linkTab Then linkTab.BackColor = Drawing.Color.Transparent
+        If lastLink IsNot linkTab Then linkTab.BackColor = Drawing.Color.LightGray 'Transparent
+        'closeButton.Visible = False
     End Sub
     Sub clearNode()
         flowPanel.Controls.Clear()
@@ -65,13 +67,13 @@ Public Class TabHeader
     End Sub
     'activate tab, but not select it.
     Sub selectTab(ByVal page As PageTemplate)
-        If lastLink IsNot Nothing Then lastLink.BackColor = Drawing.Color.Transparent
+        If lastLink IsNot Nothing Then lastLink.BackColor = Drawing.Color.LightGray 'Transparent
         Dim link As LinkLabel = hashLink(page.Title)
         If link Is Nothing Then
             add(page)
             link = hashLink(page.Title)
         End If
-        link.BackColor = Drawing.Color.Yellow
+        link.BackColor = Drawing.Color.White 'Yellow
         lastLink = link
     End Sub
 

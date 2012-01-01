@@ -69,7 +69,7 @@ Public Class PageEntryTemplate
         If InstancePageListTemplate.isEntryEmbedded Then
             InstancePageListTemplate.refreshDataGrid()
             InstancePageListTemplate.dgvList.Focus()
-            Me.Enabled = False
+            prepareEnabled(False)
             InstancePageListTemplate.selectGrid()
         End If
         'Me.ParentForm.Hide()
@@ -205,7 +205,7 @@ Public Class PageEntryTemplate
         If InstancePageListTemplate IsNot Nothing AndAlso Not InstancePageListTemplate.isEntryEmbedded Then
             ParentForm.Hide()
         Else
-            Me.Enabled = False
+            prepareEnabled(False)
             InstancePageListTemplate.dgvList.Focus()
             InstancePageListTemplate.selectGrid()
         End If

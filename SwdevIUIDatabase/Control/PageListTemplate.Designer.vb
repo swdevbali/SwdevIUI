@@ -32,6 +32,9 @@ Partial Class PageListTemplate
         Me.TextKataKunci = New System.Windows.Forms.TextBox()
         Me.ComCariBy = New System.Windows.Forms.ComboBox()
         Me.pnlTop = New System.Windows.Forms.Panel()
+        Me.pnlKonfirmasi = New System.Windows.Forms.Panel()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnSaveAndClose = New System.Windows.Forms.Button()
         Me.btnCetak = New System.Windows.Forms.Button()
         Me.btnDel = New System.Windows.Forms.Button()
         Me.btnEdit = New System.Windows.Forms.Button()
@@ -39,9 +42,6 @@ Partial Class PageListTemplate
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.pnlForm = New System.Windows.Forms.Panel()
-        Me.pnlKonfirmasi = New System.Windows.Forms.Panel()
-        Me.btnCancel = New System.Windows.Forms.Button()
-        Me.btnSaveAndClose = New System.Windows.Forms.Button()
         CType(Me.dgvList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTop.SuspendLayout()
         Me.pnlKonfirmasi.SuspendLayout()
@@ -108,7 +108,6 @@ Partial Class PageListTemplate
         'pnlTop
         '
         Me.pnlTop.BackColor = System.Drawing.Color.White
-        Me.pnlTop.Controls.Add(Me.pnlKonfirmasi)
         Me.pnlTop.Controls.Add(Me.btnCetak)
         Me.pnlTop.Controls.Add(Me.btnDel)
         Me.pnlTop.Controls.Add(Me.btnEdit)
@@ -116,11 +115,62 @@ Partial Class PageListTemplate
         Me.pnlTop.Controls.Add(Me.TextKataKunci)
         Me.pnlTop.Controls.Add(Me.ComCariBy)
         Me.pnlTop.Controls.Add(Me.Label12)
+        Me.pnlTop.Controls.Add(Me.pnlKonfirmasi)
         Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlTop.Location = New System.Drawing.Point(0, 100)
         Me.pnlTop.Name = "pnlTop"
         Me.pnlTop.Size = New System.Drawing.Size(856, 47)
         Me.pnlTop.TabIndex = 33
+        '
+        'pnlKonfirmasi
+        '
+        Me.pnlKonfirmasi.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlKonfirmasi.Controls.Add(Me.btnCancel)
+        Me.pnlKonfirmasi.Controls.Add(Me.btnSaveAndClose)
+        Me.pnlKonfirmasi.Location = New System.Drawing.Point(530, 6)
+        Me.pnlKonfirmasi.Name = "pnlKonfirmasi"
+        Me.pnlKonfirmasi.Size = New System.Drawing.Size(321, 38)
+        Me.pnlKonfirmasi.TabIndex = 30
+        Me.pnlKonfirmasi.Visible = False
+        '
+        'btnCancel
+        '
+        Me.btnCancel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.CausesValidation = False
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCancel.FlatAppearance.BorderSize = 0
+        Me.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow
+        Me.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.YellowGreen
+        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCancel.Image = Global.SwdevIUIDatabase.My.Resources.Resources._4tutup
+        Me.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnCancel.Location = New System.Drawing.Point(128, 4)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(75, 31)
+        Me.btnCancel.TabIndex = 8
+        Me.btnCancel.Text = "&Cancel"
+        Me.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnCancel.UseVisualStyleBackColor = True
+        '
+        'btnSaveAndClose
+        '
+        Me.btnSaveAndClose.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnSaveAndClose.DialogResult = System.Windows.Forms.DialogResult.OK
+        Me.btnSaveAndClose.FlatAppearance.BorderSize = 0
+        Me.btnSaveAndClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow
+        Me.btnSaveAndClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.YellowGreen
+        Me.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSaveAndClose.Image = Global.SwdevIUIDatabase.My.Resources.Resources.accept_item
+        Me.btnSaveAndClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnSaveAndClose.Location = New System.Drawing.Point(6, 3)
+        Me.btnSaveAndClose.Name = "btnSaveAndClose"
+        Me.btnSaveAndClose.Size = New System.Drawing.Size(115, 31)
+        Me.btnSaveAndClose.TabIndex = 7
+        Me.btnSaveAndClose.Text = "&Save and Close"
+        Me.btnSaveAndClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnSaveAndClose.UseVisualStyleBackColor = True
         '
         'btnCetak
         '
@@ -219,56 +269,6 @@ Partial Class PageListTemplate
         Me.pnlForm.Name = "pnlForm"
         Me.pnlForm.Size = New System.Drawing.Size(856, 100)
         Me.pnlForm.TabIndex = 35
-        '
-        'pnlKonfirmasi
-        '
-        Me.pnlKonfirmasi.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pnlKonfirmasi.Controls.Add(Me.btnCancel)
-        Me.pnlKonfirmasi.Controls.Add(Me.btnSaveAndClose)
-        Me.pnlKonfirmasi.Location = New System.Drawing.Point(530, 6)
-        Me.pnlKonfirmasi.Name = "pnlKonfirmasi"
-        Me.pnlKonfirmasi.Size = New System.Drawing.Size(321, 38)
-        Me.pnlKonfirmasi.TabIndex = 30
-        Me.pnlKonfirmasi.Visible = False
-        '
-        'btnCancel
-        '
-        Me.btnCancel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnCancel.CausesValidation = False
-        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.FlatAppearance.BorderSize = 0
-        Me.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow
-        Me.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.YellowGreen
-        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCancel.Image = Global.SwdevIUIDatabase.My.Resources.Resources._4tutup
-        Me.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCancel.Location = New System.Drawing.Point(128, 4)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(75, 31)
-        Me.btnCancel.TabIndex = 8
-        Me.btnCancel.Text = "&Cancel"
-        Me.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnCancel.UseVisualStyleBackColor = True
-        '
-        'btnSaveAndClose
-        '
-        Me.btnSaveAndClose.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnSaveAndClose.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnSaveAndClose.FlatAppearance.BorderSize = 0
-        Me.btnSaveAndClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow
-        Me.btnSaveAndClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.YellowGreen
-        Me.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSaveAndClose.Image = Global.SwdevIUIDatabase.My.Resources.Resources.accept_item
-        Me.btnSaveAndClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSaveAndClose.Location = New System.Drawing.Point(6, 3)
-        Me.btnSaveAndClose.Name = "btnSaveAndClose"
-        Me.btnSaveAndClose.Size = New System.Drawing.Size(115, 31)
-        Me.btnSaveAndClose.TabIndex = 7
-        Me.btnSaveAndClose.Text = "&Save and Close"
-        Me.btnSaveAndClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnSaveAndClose.UseVisualStyleBackColor = True
         '
         'PageListTemplate
         '

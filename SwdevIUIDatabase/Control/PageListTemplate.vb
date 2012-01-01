@@ -85,9 +85,10 @@ Public Class PageListTemplate
             Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
             FormEntry.FormMode = PageEntryTemplate.FormModeEnum.ADD
             FormEntry.prepareForAddition()
-            FormEntry.Enabled = True
+            FormEntry.prepareEnabled(True)
             FormEntry.prepareFirstFocus()
             pnlKonfirmasi.Visible = True
+            pnlKonfirmasi.BringToFront()
         End If
     End Sub
 
@@ -280,7 +281,7 @@ Public Class PageListTemplate
             Dim entryForm As PageTemplate = Pages.Item(FORM_ENTRY_NAME)
             entryForm.Dock = DockStyle.Fill
             pnlForm.Size = entryForm.Size
-            entryForm.Enabled = False 'start with disable state
+            entryForm.prepareEnabled(False) '.Enabled = False 'start with disable state
             pnlForm.Controls.Add(entryForm)
         Else
             pnlForm.Visible = False
@@ -308,6 +309,7 @@ Public Class PageListTemplate
             Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
             FormEntry.btnSaveAndClose_Click(Nothing, Nothing)
             pnlKonfirmasi.Visible = False
+            pnlKonfirmasi.SendToBack()
         End If
     End Sub
 
@@ -317,6 +319,7 @@ Public Class PageListTemplate
             Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
             FormEntry.btnCancel_Click_1(Nothing, Nothing)
             pnlKonfirmasi.Visible = False
+            pnlKonfirmasi.SendToBack()
         End If
     End Sub
 End Class
