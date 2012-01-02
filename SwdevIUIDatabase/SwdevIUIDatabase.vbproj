@@ -77,6 +77,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\DataGridViewColumnHeaderCheckBoxCell.vb" />
     <Compile Include="Control\PageEntryTemplate.Designer.vb">
       <DependentUpon>PageEntryTemplate.vb</DependentUpon>
     </Compile>

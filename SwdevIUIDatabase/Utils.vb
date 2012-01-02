@@ -254,6 +254,14 @@ Public Class Utils
         dt.Dispose()
     End Sub
 
+    Shared Sub selectInCombo(ByVal comboBox As ComboBox, ByVal value As String)
+        For Each o As ValueDescriptionPair In comboBox.Items
+            If o.Value IsNot Nothing AndAlso o.Value.ToString.Equals(value) Then
+                comboBox.SelectedItem = o
+                Exit For
+            End If
+        Next
+    End Sub
 End Class
 
 

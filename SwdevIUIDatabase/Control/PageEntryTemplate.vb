@@ -118,7 +118,7 @@ Public Class PageEntryTemplate
         End If
     End Sub
 
-    Protected Sub enableNewValue()
+    Protected Overridable Sub enableNewValue()
         If CONTROL_CONTAINER Is Nothing Then Return
         For Each Container As Control In CONTROL_CONTAINER
             For Each c As Control In Container.Controls
@@ -164,7 +164,10 @@ Public Class PageEntryTemplate
                                 'cbo.Text = dt.Rows(0).Item(c.Tag).ToString
                                 If cbo.Items.Count > 0 AndAlso TypeOf (cbo.Items(0)) Is ValueDescriptionPair Then
                                     For Each o As ValueDescriptionPair In cbo.Items
-                                        If o.Value IsNot Nothing AndAlso o.Value.ToString.Equals(dt.Rows(0).Item(c.Tag).ToString) Then cbo.SelectedItem = o
+                                        If o.Value IsNot Nothing AndAlso o.Value.ToString.Equals(dt.Rows(0).Item(c.Tag).ToString) Then
+                                            cbo.SelectedItem = o
+                                            Exit For
+                                        End If
                                     Next
                                 Else
                                     cbo.Text = dt.Rows(0).Item(c.Tag).ToString

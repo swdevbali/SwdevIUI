@@ -122,6 +122,8 @@ Public Class PageListTemplate
             Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
             Dim kode As String = dgvList.CurrentRow.Cells(0).Value
             Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
+            pnlKonfirmasi.Visible = True
+            pnlKonfirmasi.BringToFront()
             FormEntry.FormMode = PageEntryTemplate.FormModeEnum.EDIT
             FormEntry.prepareForEdit(kode)
             FormEntry.Enabled = True
@@ -199,10 +201,20 @@ Public Class PageListTemplate
         Dim dt As New DataTable
         If SELECT_PARAMETER IsNot Nothing Then
             If Utils.executeSP(PROCEDURE_MASTER, SELECT_PARAMETER, dt) Then
-                If dt IsNot Nothing Then
+                If dt.Rows.Count>0 Then
+                    dgvList.Columns.Clear()
                     dgvList.DataSource = dt
                     dgvList.Columns(dgvList.Columns.Count - 1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
                     dgvList.Columns(0).Visible = Not HideFirstColumn
+
+                    'checkbox columns http://www.codeproject.com/KB/grid/CheckBoxHeaderCell.aspx
+                    Dim colCB As New DataGridViewCheckBoxColumn 'colCB = new DataGridViewCheckBoxColumn();
+                    Dim cbHeader As New DataGridViewColumnHeaderCheckBoxCell  'cbHeader = new DatagridViewCheckBoxHeaderCell();
+
+                    colCB.HeaderCell = cbHeader
+                    dgvList.Columns.Insert(0, colCB)
+                    dgvList.Columns(0).ReadOnly = False
+                    dgvList.ReadOnly = False
                 End If
             End If
         End If
@@ -282,6 +294,7 @@ Public Class PageListTemplate
             entryForm.Dock = DockStyle.Fill
             pnlForm.Size = entryForm.Size
             entryForm.prepareEnabled(False) '.Enabled = False 'start with disable state
+            entryForm.Refresh()
             pnlForm.Controls.Add(entryForm)
         Else
             pnlForm.Visible = False
@@ -320,6 +333,12 @@ Public Class PageListTemplate
             FormEntry.btnCancel_Click_1(Nothing, Nothing)
             pnlKonfirmasi.Visible = False
             pnlKonfirmasi.SendToBack()
+        End If
+    End Sub
+
+    Private Sub dgvList_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvList.CellContentClick
+        If (e.ColumnIndex = 0) Then
+            dgvList.Rows(e.RowIndex).Cells(0).Value = Not dgvList.Rows(e.RowIndex).Cells(0).Value
         End If
     End Sub
 End Class

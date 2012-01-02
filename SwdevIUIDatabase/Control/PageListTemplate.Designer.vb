@@ -108,6 +108,7 @@ Partial Class PageListTemplate
         'pnlTop
         '
         Me.pnlTop.BackColor = System.Drawing.Color.White
+        Me.pnlTop.Controls.Add(Me.pnlKonfirmasi)
         Me.pnlTop.Controls.Add(Me.btnCetak)
         Me.pnlTop.Controls.Add(Me.btnDel)
         Me.pnlTop.Controls.Add(Me.btnEdit)
@@ -115,7 +116,6 @@ Partial Class PageListTemplate
         Me.pnlTop.Controls.Add(Me.TextKataKunci)
         Me.pnlTop.Controls.Add(Me.ComCariBy)
         Me.pnlTop.Controls.Add(Me.Label12)
-        Me.pnlTop.Controls.Add(Me.pnlKonfirmasi)
         Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlTop.Location = New System.Drawing.Point(0, 100)
         Me.pnlTop.Name = "pnlTop"
