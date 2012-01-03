@@ -51,7 +51,8 @@ Public Class TabHeader
         flowPanel.Controls.Clear()
         lastLink = Nothing
         closeButton.Visible = False
-
+        hashTab.Clear()
+        hashLink.Clear()
     End Sub
 
     Sub goBack()

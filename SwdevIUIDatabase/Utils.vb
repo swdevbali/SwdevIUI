@@ -262,6 +262,28 @@ Public Class Utils
             End If
         Next
     End Sub
+
+    Shared Sub fillComboBoxUsingSP(ByVal comboBox As ComboBox, ByVal proc_name As String, ByVal param As Object(), ByVal firstItem As String)
+        Dim dt As New DataTable
+        Utils.executeSP(proc_name, param, dt)
+        If comboBox.DataSource IsNot Nothing Then
+            comboBox.DataSource = Nothing
+        End If
+        comboBox.Items.Clear()
+
+        Dim VDP_Array As New ArrayList
+        VDP_Array.Add(New ValueDescriptionPair(Nothing, firstitem))
+        For Each row As DataRow In dt.Rows
+            VDP_Array.Add(New ValueDescriptionPair(row(0), row(1)))
+        Next
+        With comboBox
+            .DisplayMember = "Description"
+            .ValueMember = "Value"
+            .DataSource = VDP_Array
+        End With
+        dt.Dispose()
+    End Sub
+
 End Class
 
 

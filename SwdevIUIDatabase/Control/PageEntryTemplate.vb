@@ -142,7 +142,7 @@ Public Class PageEntryTemplate
             Next
         Next
     End Sub
-    Protected Sub fillEditValue(ByVal dt As DataTable)
+    Protected Overridable Sub fillEditValue(ByVal dt As DataTable)
         If dt.Rows.Count = 0 Then
             Return
         End If
@@ -175,6 +175,9 @@ Public Class PageEntryTemplate
                             Else
                                 c.Text = dt.Rows(0).Item(c.Tag)
                             End If
+                        ElseIf TypeOf (c) Is CheckBox Then
+                            Dim chk As CheckBox = c
+                            chk.Checked = dt.Rows(0).Item(c.Tag)
                         End If
                     End If
                 End If
