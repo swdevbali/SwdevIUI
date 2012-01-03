@@ -31,6 +31,10 @@ Public Class PageListTemplate
 
     Property isEntryEmbedded As Boolean
 
+    Protected Property UseExtendedPanel As Boolean = False
+
+    Protected Property ExtendedPanelContent As UserControl
+
     Public Sub RefreshTablePencarian(ByVal namakolom As String, ByVal katakunci As String)
         Dim dt As New DataTable
         'Dim dsrole As New DataSet
@@ -105,8 +109,8 @@ Public Class PageListTemplate
             FormEntry.Dock = DockStyle.Fill
             FormEntry.InstancePageTemplate = Me
             FormEntry.PROCEDURE_MASTER = PROCEDURE_MASTER
-            Dim kode As String = dgvList.CurrentRow.Cells(0).Value
-            Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
+            Dim kode As String = dgvList.CurrentRow.Cells(1).Value
+            Dim lastrow As Integer = dgvList.CurrentRow.Cells(1).RowIndex
             FormEntry.prepareForEdit(kode)
             popUp.Text = Application.ProductName
             popUp.Size = newsize
@@ -120,13 +124,13 @@ Public Class PageListTemplate
             popUp.Hide()
         Else
             Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
-            Dim kode As String = dgvList.CurrentRow.Cells(0).Value
-            Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
+            Dim kode As String = dgvList.CurrentRow.Cells(1).Value
+            Dim lastrow As Integer = dgvList.CurrentRow.Cells(1).RowIndex
             pnlKonfirmasi.Visible = True
             pnlKonfirmasi.BringToFront()
             FormEntry.FormMode = PageEntryTemplate.FormModeEnum.EDIT
             FormEntry.prepareForEdit(kode)
-            FormEntry.Enabled = True
+            FormEntry.prepareEnabled(True)
             FormEntry.prepareFirstFocus()
 
         End If
@@ -134,9 +138,13 @@ Public Class PageListTemplate
 
 
     Private Sub btnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDel.Click
+        If dgvList.CurrentRow Is Nothing Then
+            MessageBox.Show("Pilih baris data terlebih dahulu sebelum menghapus", "PassBandara", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
         Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
-        Dim kode As String = dgvList.CurrentRow.Cells(0).Value.ToString
-        Dim nama As String = dgvList.CurrentRow.Cells(1).Value.ToString
+        Dim kode As String = dgvList.CurrentRow.Cells(1).Value.ToString
+        Dim nama As String = dgvList.CurrentRow.Cells(2).Value.ToString
         Dim retval As Integer = MessageBox.Show("Apakah anda yakin akan menghapus " & kode & " - " & nama & " ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
         If retval = DialogResult.Yes Then
             prepareDeleteParameter(kode)
@@ -150,9 +158,10 @@ Public Class PageListTemplate
             Else
                 MessageBox.Show("Data gagal dihapus.")
             End If
-
         End If
-
+        If isEntryEmbedded Then
+            refreshDataGrid()
+        End If
 
     End Sub
     'TOFIX. Now let convert Master dokter into this
@@ -194,7 +203,7 @@ Public Class PageListTemplate
         End If
         refreshDataGrid()
         'todo : still refreshing the 2nd item will make it on top
-        If lastrow >= 0 Then dgvList.Rows(lastrow).Selected = True
+        If dgvList.Rows.Count > 0 And lastrow >= 0 Then dgvList.Rows(lastrow).Selected = True
     End Sub
     Public Overrides Sub refreshDataGrid()
         MyBase.refreshDataGrid()
@@ -215,6 +224,9 @@ Public Class PageListTemplate
                     dgvList.Columns.Insert(0, colCB)
                     dgvList.Columns(0).ReadOnly = False
                     dgvList.ReadOnly = False
+                Else
+                    dgvList.Columns.Clear()
+                    dgvList.DataSource = Nothing
                 End If
             End If
         End If
@@ -299,14 +311,36 @@ Public Class PageListTemplate
         Else
             pnlForm.Visible = False
         End If
+
+        If UseExtendedPanel Then
+            pnlExtended.Visible = True
+            ExtendedPanelContent.Dock = DockStyle.Fill
+            pnlExtended.Controls.Add(ExtendedPanelContent)
+        Else
+            pnlExtended.Visible = False
+        End If
+    End Sub
+
+    Private Sub dgvList_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvList.CellClick
+        dgvList_SelectionChanged(sender, Nothing)
     End Sub
 
 
     Private Sub dgvList_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvList.SelectionChanged
         If dgvList.CurrentRow IsNot Nothing AndAlso isEntryEmbedded Then
             Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
-            Dim kode As String = dgvList.CurrentRow.Cells(0).Value
-            Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
+            Dim kode As String
+            Dim lastrow As Integer
+
+            'this if else is handing the addition of checkbox column
+            If IsNumeric(dgvList.CurrentRow.Cells(0).Value) Then
+                kode = dgvList.CurrentRow.Cells(0).Value
+                lastrow = dgvList.CurrentRow.Cells(0).RowIndex
+            Else
+                kode = dgvList.CurrentRow.Cells(1).Value
+                lastrow = dgvList.CurrentRow.Cells(1).RowIndex
+            End If
+             
             FormEntry.PROCEDURE_MASTER = PROCEDURE_MASTER
             FormEntry.prepareForEdit(kode)
         End If
@@ -339,6 +373,8 @@ Public Class PageListTemplate
     Private Sub dgvList_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvList.CellContentClick
         If (e.ColumnIndex = 0) Then
             dgvList.Rows(e.RowIndex).Cells(0).Value = Not dgvList.Rows(e.RowIndex).Cells(0).Value
+
         End If
+
     End Sub
 End Class

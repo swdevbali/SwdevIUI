@@ -113,7 +113,7 @@ Public Class PageEntryTemplate
         prepareSelectSingleRowParameter(kode)
 
         If Utils.executeSP(PROCEDURE_MASTER, SELECT_SINGLE_ROW_PARAMETER, dt) Then
-            enableNewValue()
+            'enableNewValue()'FIX: this should solve the problem
             fillEditValue(dt)
         End If
     End Sub
