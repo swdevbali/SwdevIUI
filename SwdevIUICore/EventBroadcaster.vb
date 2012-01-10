@@ -5,7 +5,7 @@
 
 
     Shared Sub doEnterReportPage(ByVal page As SwdevIUICore.PageTemplate)
-        RaiseEvent EnterReportPage(page, Nothing)
+        RaiseEvent EnterReportPage(page, Nothing) 'akan ditangani MainWindow
     End Sub
 
     Shared Sub doUpdateDatabaseStatus()

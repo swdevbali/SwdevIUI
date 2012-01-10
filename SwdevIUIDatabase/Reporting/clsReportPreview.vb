@@ -23,7 +23,8 @@ Public Class clsReportPreview
         Dim report As ReportViewerPage = Pages.Item("reportPage")
         report.rptLocation = sRptLocation
         report.CrystalReportViewer1.ReportSource = rep
-        RaiseEvent EnterReportPage(report, New EventArgs()) 'EventBroadcaster.doEnterReportPage(report)
+        EventBroadcaster.doEnterReportPage(report)
+        'RaiseEvent EnterReportPage(report, New EventArgs()) 'EventBroadcaster.doEnterReportPage(report)
     End Sub
 
     Public Sub SetParameter(ByVal sParameterName As String, ByVal sValue As String)

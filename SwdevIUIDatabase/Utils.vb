@@ -2,11 +2,189 @@
 Imports System.Windows.Forms
 Imports SwdevIUIDatabase
 Imports SwdevIUICore
+Imports SwdevIUIDatabase.GenCode128
+Imports System.Drawing
 
 Public Class Utils
+#Region "barcode"
+    Private Shared ReadOnly cPatterns As Integer(,) = {{2, 1, 2, 2, 2, 2, _
+      0, 0}, {2, 2, 2, 1, 2, 2, _
+      0, 0}, {2, 2, 2, 2, 2, 1, _
+      0, 0}, {1, 2, 1, 2, 2, 3, _
+      0, 0}, {1, 2, 1, 3, 2, 2, _
+      0, 0}, {1, 3, 1, 2, 2, 2, _
+      0, 0}, _
+      {1, 2, 2, 2, 1, 3, _
+      0, 0}, {1, 2, 2, 3, 1, 2, _
+      0, 0}, {1, 3, 2, 2, 1, 2, _
+      0, 0}, {2, 2, 1, 2, 1, 3, _
+      0, 0}, {2, 2, 1, 3, 1, 2, _
+      0, 0}, {2, 3, 1, 2, 1, 2, _
+      0, 0}, _
+      {1, 1, 2, 2, 3, 2, _
+      0, 0}, {1, 2, 2, 1, 3, 2, _
+      0, 0}, {1, 2, 2, 2, 3, 1, _
+      0, 0}, {1, 1, 3, 2, 2, 2, _
+      0, 0}, {1, 2, 3, 1, 2, 2, _
+      0, 0}, {1, 2, 3, 2, 2, 1, _
+      0, 0}, _
+      {2, 2, 3, 2, 1, 1, _
+      0, 0}, {2, 2, 1, 1, 3, 2, _
+      0, 0}, {2, 2, 1, 2, 3, 1, _
+      0, 0}, {2, 1, 3, 2, 1, 2, _
+      0, 0}, {2, 2, 3, 1, 1, 2, _
+      0, 0}, {3, 1, 2, 1, 3, 1, _
+      0, 0}, _
+      {3, 1, 1, 2, 2, 2, _
+      0, 0}, {3, 2, 1, 1, 2, 2, _
+      0, 0}, {3, 2, 1, 2, 2, 1, _
+      0, 0}, {3, 1, 2, 2, 1, 2, _
+      0, 0}, {3, 2, 2, 1, 1, 2, _
+      0, 0}, {3, 2, 2, 2, 1, 1, _
+      0, 0}, _
+      {2, 1, 2, 1, 2, 3, _
+      0, 0}, {2, 1, 2, 3, 2, 1, _
+      0, 0}, {2, 3, 2, 1, 2, 1, _
+      0, 0}, {1, 1, 1, 3, 2, 3, _
+      0, 0}, {1, 3, 1, 1, 2, 3, _
+      0, 0}, {1, 3, 1, 3, 2, 1, _
+      0, 0}, _
+      {1, 1, 2, 3, 1, 3, _
+      0, 0}, {1, 3, 2, 1, 1, 3, _
+      0, 0}, {1, 3, 2, 3, 1, 1, _
+      0, 0}, {2, 1, 1, 3, 1, 3, _
+      0, 0}, {2, 3, 1, 1, 1, 3, _
+      0, 0}, {2, 3, 1, 3, 1, 1, _
+      0, 0}, _
+      {1, 1, 2, 1, 3, 3, _
+      0, 0}, {1, 1, 2, 3, 3, 1, _
+      0, 0}, {1, 3, 2, 1, 3, 1, _
+      0, 0}, {1, 1, 3, 1, 2, 3, _
+      0, 0}, {1, 1, 3, 3, 2, 1, _
+      0, 0}, {1, 3, 3, 1, 2, 1, _
+      0, 0}, _
+      {3, 1, 3, 1, 2, 1, _
+      0, 0}, {2, 1, 1, 3, 3, 1, _
+      0, 0}, {2, 3, 1, 1, 3, 1, _
+      0, 0}, {2, 1, 3, 1, 1, 3, _
+      0, 0}, {2, 1, 3, 3, 1, 1, _
+      0, 0}, {2, 1, 3, 1, 3, 1, _
+      0, 0}, _
+      {3, 1, 1, 1, 2, 3, _
+      0, 0}, {3, 1, 1, 3, 2, 1, _
+      0, 0}, {3, 3, 1, 1, 2, 1, _
+      0, 0}, {3, 1, 2, 1, 1, 3, _
+      0, 0}, {3, 1, 2, 3, 1, 1, _
+      0, 0}, {3, 3, 2, 1, 1, 1, _
+      0, 0}, _
+      {3, 1, 4, 1, 1, 1, _
+      0, 0}, {2, 2, 1, 4, 1, 1, _
+      0, 0}, {4, 3, 1, 1, 1, 1, _
+      0, 0}, {1, 1, 1, 2, 2, 4, _
+      0, 0}, {1, 1, 1, 4, 2, 2, _
+      0, 0}, {1, 2, 1, 1, 2, 4, _
+      0, 0}, _
+      {1, 2, 1, 4, 2, 1, _
+      0, 0}, {1, 4, 1, 1, 2, 2, _
+      0, 0}, {1, 4, 1, 2, 2, 1, _
+      0, 0}, {1, 1, 2, 2, 1, 4, _
+      0, 0}, {1, 1, 2, 4, 1, 2, _
+      0, 0}, {1, 2, 2, 1, 1, 4, _
+      0, 0}, _
+      {1, 2, 2, 4, 1, 1, _
+      0, 0}, {1, 4, 2, 1, 1, 2, _
+      0, 0}, {1, 4, 2, 2, 1, 1, _
+      0, 0}, {2, 4, 1, 2, 1, 1, _
+      0, 0}, {2, 2, 1, 1, 1, 4, _
+      0, 0}, {4, 1, 3, 1, 1, 1, _
+      0, 0}, _
+      {2, 4, 1, 1, 1, 2, _
+      0, 0}, {1, 3, 4, 1, 1, 1, _
+      0, 0}, {1, 1, 1, 2, 4, 2, _
+      0, 0}, {1, 2, 1, 1, 4, 2, _
+      0, 0}, {1, 2, 1, 2, 4, 1, _
+      0, 0}, {1, 1, 4, 2, 1, 2, _
+      0, 0}, _
+      {1, 2, 4, 1, 1, 2, _
+      0, 0}, {1, 2, 4, 2, 1, 1, _
+      0, 0}, {4, 1, 1, 2, 1, 2, _
+      0, 0}, {4, 2, 1, 1, 1, 2, _
+      0, 0}, {4, 2, 1, 2, 1, 1, _
+      0, 0}, {2, 1, 2, 1, 4, 1, _
+      0, 0}, _
+      {2, 1, 4, 1, 2, 1, _
+      0, 0}, {4, 1, 2, 1, 2, 1, _
+      0, 0}, {1, 1, 1, 1, 4, 3, _
+      0, 0}, {1, 1, 1, 3, 4, 1, _
+      0, 0}, {1, 3, 1, 1, 4, 1, _
+      0, 0}, {1, 1, 4, 1, 1, 3, _
+      0, 0}, _
+      {1, 1, 4, 3, 1, 1, _
+      0, 0}, {4, 1, 1, 1, 1, 3, _
+      0, 0}, {4, 1, 1, 3, 1, 1, _
+      0, 0}, {1, 1, 3, 1, 4, 1, _
+      0, 0}, {1, 1, 4, 1, 3, 1, _
+      0, 0}, {3, 1, 1, 1, 4, 1, _
+      0, 0}, _
+      {4, 1, 1, 1, 3, 1, _
+      0, 0}, {2, 1, 1, 4, 1, 2, _
+      0, 0}, {2, 1, 1, 2, 1, 4, _
+      0, 0}, {2, 1, 1, 2, 3, 2, _
+      0, 0}, {2, 3, 3, 1, 1, 1, _
+      2, 0}}
+#End Region
 
+    Private Const cQuietWidth As Integer = 10
+    Public Shared Function generateBarcode(ByVal InputData As String, ByVal BarWeight As Integer, ByVal AddQuietZone As Boolean) As Image
+        ' get the Code128 codes to represent the message
+        Dim content As New Code128Content(InputData)
+        Dim codes As Integer() = content.Codes
 
+        Dim width As Integer, height As Integer
+        width = ((codes.Length - 3) * 11 + 35) * BarWeight
+        'height = Convert.ToInt32(System.Math.Ceiling(Convert.ToSingle(width) * 0.15F)) 'asli
+        height = Convert.ToInt32(System.Math.Ceiling(Convert.ToSingle(width) * 0.15F))
 
+        If AddQuietZone Then
+            ' on both sides
+            width += 2 * cQuietWidth * BarWeight
+        End If
+
+        ' get surface to draw on
+        Dim myimg As Image = New System.Drawing.Bitmap(width, height)
+        Using gr As Graphics = Graphics.FromImage(myimg)
+
+            ' set to white so we don't have to fill the spaces with white
+            gr.FillRectangle(System.Drawing.Brushes.White, 0, 0, width, height)
+
+            ' skip quiet zone
+            Dim cursor As Integer = If(AddQuietZone, cQuietWidth * BarWeight, 0)
+
+            For codeidx As Integer = 0 To codes.Length - 1
+                Dim code As Integer = codes(codeidx)
+
+                ' take the bars two at a time: a black and a white
+                For bar As Integer = 0 To 7 Step 2
+                    Dim barwidth As Integer = cPatterns(code, bar) * BarWeight
+                    Dim spcwidth As Integer = cPatterns(code, bar + 1) * BarWeight
+
+                    ' if width is zero, don't try to draw it
+                    If barwidth > 0 Then
+                        gr.FillRectangle(System.Drawing.Brushes.Black, cursor, 0, barwidth, height)
+                    End If
+
+                    ' note that we never need to draw the space, since we 
+                    ' initialized the graphics to all white
+
+                    ' advance cursor beyond this pair
+                    cursor += (barwidth + spcwidth)
+                Next
+            Next
+        End Using
+
+        Return myimg
+
+    End Function
     Public Shared Function isConnected() As Boolean
         Dim ReturnValue As Boolean = False
         Dim ErrMsg As String = ""
@@ -33,10 +211,11 @@ Public Class Utils
         Dim ErrMsg As String = ""
         Dim MySQL As NetMysql = Nothing
         Try
+            If Session.dbname = "" Then Return Nothing
             MySQL = New NetToolMysql_v12.NetMysql(Session.dbname, Session.dbhost, Session.dbuser, Session.dbpassword, Session.dbport)
             MySQL.TesConnection(ErrMsg)
 
-            If Session.dbname = "" Then Return Nothing
+
             If ErrMsg = "" Then
                 Return MySQL
             Else
@@ -55,8 +234,8 @@ Public Class Utils
         Dim RetrunValue As Boolean = False
 
         Try
-
             Dim condb As NetMysql = getConnection()
+            If condb Is Nothing Then Return False
             dt = condb.MySQLExecuteProcedure(False, spname, errMsg, param)
             If errMsg = "" Then
                 RetrunValue = True
@@ -262,8 +441,36 @@ Public Class Utils
             End If
         Next
     End Sub
-
+    Shared Sub selectInComboDataGrid(ByVal comboBox As DataGridViewComboBoxCell, ByVal value As String)
+        For Each o As ValueDescriptionPair In comboBox.Items
+            If o.Value IsNot Nothing AndAlso o.Value.ToString.Equals(value) Then
+                comboBox.Value = o
+                Exit For
+            End If
+        Next
+    End Sub
     Shared Sub fillComboBoxUsingSP(ByVal comboBox As ComboBox, ByVal proc_name As String, ByVal param As Object(), ByVal firstItem As String)
+        Dim dt As New DataTable
+        Utils.executeSP(proc_name, param, dt)
+        If comboBox.DataSource IsNot Nothing Then
+            comboBox.DataSource = Nothing
+        End If
+        comboBox.Items.Clear()
+
+        Dim VDP_Array As New ArrayList
+        VDP_Array.Add(New ValueDescriptionPair(Nothing, firstItem))
+        For Each row As DataRow In dt.Rows
+            VDP_Array.Add(New ValueDescriptionPair(row(0), row(1)))
+        Next
+        With comboBox
+            .DisplayMember = "Description"
+            .ValueMember = "Value"
+            .DataSource = VDP_Array
+        End With
+        dt.Dispose()
+    End Sub
+
+    Shared Sub fillComboBoxCellUsingSP(ByVal comboBox As DataGridViewComboBoxColumn, ByVal proc_name As String, ByVal param As Object(), ByVal firstitem As String)
         Dim dt As New DataTable
         Utils.executeSP(proc_name, param, dt)
         If comboBox.DataSource IsNot Nothing Then

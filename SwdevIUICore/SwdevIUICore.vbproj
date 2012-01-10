@@ -73,6 +73,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ScrollbarLessPanel.Designer.vb">
+      <DependentUpon>ScrollbarLessPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScrollbarLessPanel.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\TabHeader.Designer.vb">
       <DependentUpon>TabHeader.vb</DependentUpon>
     </Compile>

@@ -99,7 +99,7 @@ Public Class TabHeader
         Dim key As String = hoverLink.Text
         hashTab.Remove(hoverLink.Text)
         Dim linkRemove As LinkLabel = hashLink(key)
-        linkRemove.Dispose()
+        If linkRemove IsNot Nothing Then linkRemove.Dispose()
         hashLink.Remove(key)
         Pages.remove(key)
         flowPanel.Controls.Remove(linkRemove)

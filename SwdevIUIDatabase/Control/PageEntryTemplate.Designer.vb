@@ -47,8 +47,9 @@ Partial Class PageEntryTemplate
         Me.Panel1.Controls.Add(Me.btnSaveAndClose)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(767, 40)
+        Me.Panel1.Size = New System.Drawing.Size(1023, 58)
         Me.Panel1.TabIndex = 35
         '
         'lblTitle
@@ -57,19 +58,21 @@ Partial Class PageEntryTemplate
         Me.lblTitle.FillType = gLabel.gLabel.eFillType.Solid
         Me.lblTitle.FillTypeLinear = System.Drawing.Drawing2D.LinearGradientMode.Vertical
         Me.lblTitle.Font = New System.Drawing.Font("Impact", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.ForeColor = System.Drawing.Color.White
+        Me.lblTitle.ForeColor = System.Drawing.Color.DodgerBlue
         CBlendItems1.iColor = New System.Drawing.Color() {System.Drawing.Color.AliceBlue, System.Drawing.Color.RoyalBlue, System.Drawing.Color.Navy}
         CBlendItems1.iPoint = New Single() {0.0!, 0.5!, 1.0!}
         Me.lblTitle.ForeColorBlend = CBlendItems1
         Me.lblTitle.Glow = 12
         Me.lblTitle.GlowColor = System.Drawing.Color.DarkGreen
-        Me.lblTitle.Location = New System.Drawing.Point(40, 3)
+        Me.lblTitle.GlowState = False
+        Me.lblTitle.Location = New System.Drawing.Point(53, 4)
+        Me.lblTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblTitle.MouseOver = False
         Me.lblTitle.MouseOverColor = System.Drawing.Color.Gray
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.PulseSpeed = 100
         Me.lblTitle.ShadowOffset = New System.Drawing.Point(3, 3)
-        Me.lblTitle.Size = New System.Drawing.Size(145, 34)
+        Me.lblTitle.Size = New System.Drawing.Size(318, 50)
         Me.lblTitle.TabIndex = 12
         Me.lblTitle.TabStop = True
         Me.lblTitle.Text = "<Changed to Title>"
@@ -77,9 +80,10 @@ Partial Class PageEntryTemplate
         '
         'picTitle
         '
-        Me.picTitle.Location = New System.Drawing.Point(4, 5)
+        Me.picTitle.Location = New System.Drawing.Point(5, 7)
+        Me.picTitle.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.picTitle.Name = "picTitle"
-        Me.picTitle.Size = New System.Drawing.Size(30, 31)
+        Me.picTitle.Size = New System.Drawing.Size(40, 45)
         Me.picTitle.TabIndex = 3
         Me.picTitle.TabStop = False
         '
@@ -94,9 +98,10 @@ Partial Class PageEntryTemplate
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancel.Image = Global.SwdevIUIDatabase.My.Resources.Resources._4tutup
         Me.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCancel.Location = New System.Drawing.Point(689, 5)
+        Me.btnCancel.Location = New System.Drawing.Point(919, 7)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(75, 31)
+        Me.btnCancel.Size = New System.Drawing.Size(100, 45)
         Me.btnCancel.TabIndex = 2
         Me.btnCancel.Text = "&Cancel"
         Me.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -112,9 +117,10 @@ Partial Class PageEntryTemplate
         Me.btnSaveAndAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSaveAndAdd.Image = Global.SwdevIUIDatabase.My.Resources.Resources._1tambah
         Me.btnSaveAndAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSaveAndAdd.Location = New System.Drawing.Point(448, 6)
+        Me.btnSaveAndAdd.Location = New System.Drawing.Point(597, 9)
+        Me.btnSaveAndAdd.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnSaveAndAdd.Name = "btnSaveAndAdd"
-        Me.btnSaveAndAdd.Size = New System.Drawing.Size(114, 31)
+        Me.btnSaveAndAdd.Size = New System.Drawing.Size(152, 45)
         Me.btnSaveAndAdd.TabIndex = 1
         Me.btnSaveAndAdd.Text = "Save and &Add"
         Me.btnSaveAndAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -131,9 +137,10 @@ Partial Class PageEntryTemplate
         Me.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSaveAndClose.Image = Global.SwdevIUIDatabase.My.Resources.Resources.accept_item
         Me.btnSaveAndClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSaveAndClose.Location = New System.Drawing.Point(568, 6)
+        Me.btnSaveAndClose.Location = New System.Drawing.Point(757, 9)
+        Me.btnSaveAndClose.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnSaveAndClose.Name = "btnSaveAndClose"
-        Me.btnSaveAndClose.Size = New System.Drawing.Size(115, 31)
+        Me.btnSaveAndClose.Size = New System.Drawing.Size(153, 45)
         Me.btnSaveAndClose.TabIndex = 0
         Me.btnSaveAndClose.Text = "&Save and Close"
         Me.btnSaveAndClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -145,10 +152,13 @@ Partial Class PageEntryTemplate
         '
         'PageEntryTemplate
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.Panel1)
+        Me.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "PageEntryTemplate"
+        Me.Size = New System.Drawing.Size(1023, 719)
         Me.Panel1.ResumeLayout(False)
         CType(Me.picTitle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

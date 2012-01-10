@@ -50,4 +50,8 @@ Public Class PageTemplate
         Me.Enabled = enableState
     End Sub
 
+    Overridable Sub OnEnterView()
+
+    End Sub
+
 End Class

@@ -5,6 +5,8 @@ Imports SwdevIUICore
 Public Class PageListTemplate
     Inherits PageTemplate
 
+
+    Protected hashCheckedRowIndex As New Hashtable
     Property showAddButton As Boolean = True
     Property showEditButton As Boolean = True
     Property showDeleteButton As Boolean = True
@@ -25,15 +27,15 @@ Public Class PageListTemplate
     Dim WithEvents clsView As clsReportPreview
     Public Event EnterReportPage As System.EventHandler
 
-    Property showCetakButton As Boolean = True
+    Property showCetakButton As Boolean = False
 
     Property HideFirstColumn As Boolean = True
 
     Property isEntryEmbedded As Boolean
 
-    Protected Property UseExtendedPanel As Boolean = False
+    Public Property UseExtendedPanel As Boolean = False
 
-    Protected Property ExtendedPanelContent As UserControl
+    Public Property ExtendedPanelContent As UserControl
 
     Public Sub RefreshTablePencarian(ByVal namakolom As String, ByVal katakunci As String)
         Dim dt As New DataTable
@@ -123,6 +125,11 @@ Public Class PageListTemplate
             End If
             popUp.Hide()
         Else
+            If dgvList.CurrentRow Is Nothing Then
+                MessageBox.Show("Pilih salah satu berkas permohonan terlebih dahulu")
+                Return
+            End If
+
             Dim FormEntry As PageEntryTemplate = Pages.Item(FORM_ENTRY_NAME)
             Dim kode As String = dgvList.CurrentRow.Cells(1).Value
             Dim lastrow As Integer = dgvList.CurrentRow.Cells(1).RowIndex
@@ -138,26 +145,31 @@ Public Class PageListTemplate
 
 
     Private Sub btnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDel.Click
-        If dgvList.CurrentRow Is Nothing Then
-            MessageBox.Show("Pilih baris data terlebih dahulu sebelum menghapus", "PassBandara", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'MsgBox(hashCheckedRowIndex.Count)
+        If hashCheckedRowIndex.Count = 0 Then 'dgvList.CurrentRow Is Nothing 
+            MessageBox.Show("Centang baris data yang akan dihapus terlebih dahulu sebelum menghapus", "PassBandara", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
         End If
         Dim lastrow As Integer = dgvList.CurrentRow.Cells(0).RowIndex
         Dim kode As String = dgvList.CurrentRow.Cells(1).Value.ToString
         Dim nama As String = dgvList.CurrentRow.Cells(2).Value.ToString
-        Dim retval As Integer = MessageBox.Show("Apakah anda yakin akan menghapus " & kode & " - " & nama & " ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+        Dim retval As Integer = MessageBox.Show("Apakah anda yakin akan menghapus " & hashCheckedRowIndex.Count & " data ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
         If retval = DialogResult.Yes Then
-            prepareDeleteParameter(kode)
-            If Utils.exec_SP(PROCEDURE_MASTER, DELETE_PARAMETER) Then
-                'MessageBox.Show("Data berhasil dihapus.")
-                Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|delete", kode, Session.vusername})
-                refreshDataGrid()
-                lastrow = lastrow - 1
-                If lastrow < 0 Then lastrow = 0
-                If dgvList.Rows.Count > 0 Then dgvList.Rows(lastrow).Selected = True
-            Else
-                MessageBox.Show("Data gagal dihapus.")
-            End If
+            For Each r As DataGridViewRow In hashCheckedRowIndex.Values
+                kode = r.Cells(1).Value
+                nama = r.Cells(2).ToString
+                prepareDeleteParameter(kode)
+                If Utils.exec_SP(PROCEDURE_MASTER, DELETE_PARAMETER) Then
+                    'MessageBox.Show("Data berhasil dihapus.")
+                    Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|delete", kode, Session.vusername})
+                    'refreshDataGrid()
+                    lastrow = lastrow - 1
+                    If lastrow < 0 Then lastrow = 0
+                    If dgvList.Rows.Count > 0 Then dgvList.Rows(lastrow).Selected = True
+                Else
+                    MessageBox.Show("Data gagal dihapus " & nama)
+                End If
+            Next
         End If
         If isEntryEmbedded Then
             refreshDataGrid()
@@ -166,7 +178,7 @@ Public Class PageListTemplate
     End Sub
     'TOFIX. Now let convert Master dokter into this
     'after that, another master
-    Private Sub btnCetak_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCetak.Click
+    Public Sub btnCetak_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCetak.Click
         Dim strReportPath As String
         Dim ds As New DataSet
         Dim dt As New DataTable
@@ -174,7 +186,7 @@ Public Class PageListTemplate
 
         strReportPath = Application.StartupPath & "\Reports\" & REPORT_NAME
         Try
-            If Utils.executeSP(PROCEDURE_MASTER, New Object() {"select", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", Now.ToString("yyyy-MM-dd"), "0", "0"}, dt) Then
+            If Utils.executeSP(PROCEDURE_MASTER, New Object() {"select", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", Now.ToString("yyyy-MM-dd"), "0", "0", 0, 0, 0, 0, 0}, dt) Then
                 If dt IsNot Nothing Then
 
                     'Dim clsView As New clsReportPreview(dt, strReportPath)
@@ -210,7 +222,9 @@ Public Class PageListTemplate
         Dim dt As New DataTable
         If SELECT_PARAMETER IsNot Nothing Then
             If Utils.executeSP(PROCEDURE_MASTER, SELECT_PARAMETER, dt) Then
-                If dt.Rows.Count>0 Then
+
+                hashCheckedRowIndex.clear()
+                If dt.Rows.Count > 0 Then
                     dgvList.Columns.Clear()
                     dgvList.DataSource = dt
                     dgvList.Columns(dgvList.Columns.Count - 1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
@@ -373,8 +387,12 @@ Public Class PageListTemplate
     Private Sub dgvList_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvList.CellContentClick
         If (e.ColumnIndex = 0) Then
             dgvList.Rows(e.RowIndex).Cells(0).Value = Not dgvList.Rows(e.RowIndex).Cells(0).Value
+            hashCheckedRowIndex.Remove(e.RowIndex)
 
+            If dgvList.Rows(e.RowIndex).Cells(0).Value Then
+                hashCheckedRowIndex.Add(e.RowIndex, dgvList.Rows(e.RowIndex))
+
+            End If
         End If
-
     End Sub
 End Class

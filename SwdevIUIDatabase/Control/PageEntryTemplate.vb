@@ -47,6 +47,7 @@ Public Class PageEntryTemplate
     Overridable Sub prepareForAddition()
         enableNewValue()
         prepareFirstFocus()
+        prepareEnabled(True)
     End Sub
 
 
@@ -64,6 +65,7 @@ Public Class PageEntryTemplate
             doInsertNewData()
         Else
             doUpdateData()
+            doAfterUpdateData()
         End If
         result = DialogResult.OK
         If InstancePageListTemplate.isEntryEmbedded Then
@@ -73,6 +75,10 @@ Public Class PageEntryTemplate
             InstancePageListTemplate.selectGrid()
         End If
         'Me.ParentForm.Hide()
+
+    End Sub
+    Overridable Sub doAfterUpdateData()
+
     End Sub
 
     Overridable Sub doInsertNewData()
@@ -101,8 +107,11 @@ Public Class PageEntryTemplate
         prepareForAddition()
         newItemAdded = True
         InstancePageListTemplate.refreshDataGrid()
+        doAfterInsertNewData()
     End Sub
+    Overridable Sub doAfterInsertNewData()
 
+    End Sub
     Overridable Sub prepareFirstFocus()
 
     End Sub
