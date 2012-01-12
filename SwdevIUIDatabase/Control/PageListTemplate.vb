@@ -156,12 +156,12 @@ Public Class PageListTemplate
         Dim retval As Integer = MessageBox.Show("Apakah anda yakin akan menghapus " & hashCheckedRowIndex.Count & " data ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
         If retval = DialogResult.Yes Then
             For Each r As DataGridViewRow In hashCheckedRowIndex.Values
-                kode = r.Cells(1).Value
-                nama = r.Cells(2).ToString
+                kode = r.Cells(1).Value.ToString
+                nama = r.Cells(2).Value.ToString  'ToString
                 prepareDeleteParameter(kode)
                 If Utils.exec_SP(PROCEDURE_MASTER, DELETE_PARAMETER) Then
                     'MessageBox.Show("Data berhasil dihapus.")
-                    Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|delete", kode, Session.vusername})
+                    Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|delete", nama, Session.vusername, Nothing})
                     'refreshDataGrid()
                     lastrow = lastrow - 1
                     If lastrow < 0 Then lastrow = 0
@@ -233,7 +233,8 @@ Public Class PageListTemplate
                     'checkbox columns http://www.codeproject.com/KB/grid/CheckBoxHeaderCell.aspx
                     Dim colCB As New DataGridViewCheckBoxColumn 'colCB = new DataGridViewCheckBoxColumn();
                     Dim cbHeader As New DataGridViewColumnHeaderCheckBoxCell  'cbHeader = new DatagridViewCheckBoxHeaderCell();
-
+                    AddHandler cbHeader.BeginToCheckColumnHeader, AddressOf DoBeginToCheckColumnHeader
+                    AddHandler cbHeader.CheckBoxCellChangeValue, AddressOf DoCheckBoxCellChangeValue
                     colCB.HeaderCell = cbHeader
                     dgvList.Columns.Insert(0, colCB)
                     dgvList.Columns(0).ReadOnly = False
@@ -314,14 +315,17 @@ Public Class PageListTemplate
     End Sub
 
     Public Sub prepareDisplay()
-        If isEntryEmbedded Then
-            pnlForm.Visible = True
+
+        If FORM_ENTRY_NAME IsNot Nothing AndAlso isEntryEmbedded Then 'case of ZLogUser : didn't had panl form
             Dim entryForm As PageTemplate = Pages.Item(FORM_ENTRY_NAME)
-            entryForm.Dock = DockStyle.Fill
-            pnlForm.Size = entryForm.Size
-            entryForm.prepareEnabled(False) '.Enabled = False 'start with disable state
-            entryForm.Refresh()
-            pnlForm.Controls.Add(entryForm)
+            If entryForm IsNot Nothing Then
+                pnlForm.Visible = True
+                entryForm.Dock = DockStyle.Fill
+                pnlForm.Size = entryForm.Size
+                entryForm.prepareEnabled(False) '.Enabled = False 'start with disable state
+                entryForm.Refresh()
+                pnlForm.Controls.Add(entryForm)
+            End If
         Else
             pnlForm.Visible = False
         End If
@@ -354,9 +358,11 @@ Public Class PageListTemplate
                 kode = dgvList.CurrentRow.Cells(1).Value
                 lastrow = dgvList.CurrentRow.Cells(1).RowIndex
             End If
-             
-            FormEntry.PROCEDURE_MASTER = PROCEDURE_MASTER
-            FormEntry.prepareForEdit(kode)
+
+            If FormEntry IsNot Nothing Then 'trap for kasus log yg ga pnya form entry
+                FormEntry.PROCEDURE_MASTER = PROCEDURE_MASTER
+                FormEntry.prepareForEdit(kode)
+            End If
         End If
     End Sub
 
@@ -395,4 +401,20 @@ Public Class PageListTemplate
             End If
         End If
     End Sub
+
+    Private Sub DoBeginToCheckColumnHeader()
+        'Throw New NotImplementedException
+        hashCheckedRowIndex.Clear()
+    End Sub
+
+    Private Sub DoCheckBoxCellChangeValue(ByVal e As DataGridViewCellEventArgs)
+
+        If dgvList.Rows(e.RowIndex).Cells(0).Value Then
+            hashCheckedRowIndex.Add(e.RowIndex, dgvList.Rows(e.RowIndex))
+        Else
+            hashCheckedRowIndex.Remove(e.RowIndex)
+        End If
+    End Sub
+
+    
 End Class

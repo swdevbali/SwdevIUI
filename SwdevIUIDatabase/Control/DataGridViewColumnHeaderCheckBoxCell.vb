@@ -37,6 +37,11 @@ Public Class DataGridViewColumnHeaderCheckBoxCell
 
 #Region "Properties"
 
+    Event BeginToCheckColumnHeader()
+
+    Event CheckBoxCellChangeValue(ByVal dataGridViewCellEventArgs As DataGridViewCellEventArgs)
+
+    
     Public Property CheckBoxAlignment() As HorizontalAlignment
         Get
             Return _CheckBoxAlignment
@@ -136,9 +141,11 @@ Public Class DataGridViewColumnHeaderCheckBoxCell
         If e.Button = MouseButtons.Left Then
             If Not Me.OwningColumn.ReadOnly Then
                 'click on check box ?
+
                 Dim p As New Point(_CellLocation.X + e.X, _CellLocation.Y + e.Y)
                 If _CheckBoxBounds.Contains(p) Then
                     'raise event
+                    'RaiseEvent 
                     RaiseCheckBoxCheckedChanged()
                 End If
             End If
@@ -183,12 +190,15 @@ Public Class DataGridViewColumnHeaderCheckBoxCell
     End Sub
 
     Private Sub SetColumnCheckBoxChecked(ByVal checked As Boolean)
+
+        RaiseEvent BeginToCheckColumnHeader()
         For Each dgvr As DataGridViewRow In Me.DataGridView.Rows
             If (dgvr.IsNewRow) Then
                 Continue For
             End If
 
             dgvr.Cells(Me.OwningColumn.Index).Value = checked
+            RaiseEvent CheckBoxCellChangeValue(New DataGridViewCellEventArgs(Me.OwningColumn.Index, dgvr.Index))
         Next
 
         Dim currCell As DataGridViewCell = Me.DataGridView.CurrentCell

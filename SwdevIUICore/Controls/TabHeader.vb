@@ -24,6 +24,8 @@ Public Class TabHeader
         linkTab.LinkBehavior = LinkBehavior.NeverUnderline
         linkTab.TextAlign = Drawing.ContentAlignment.MiddleCenter
         linkTab.BackColor = Drawing.Color.LightGray '.Transparent
+        linkTab.Height = Me.Height
+        linkTab.Width = 200
         AddHandler linkTab.MouseEnter, AddressOf linkHoverIn
         AddHandler linkTab.MouseLeave, AddressOf linkHoverOut
         AddHandler linkTab.Click, AddressOf linkClicked

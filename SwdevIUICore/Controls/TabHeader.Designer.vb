@@ -30,18 +30,21 @@ Partial Class TabHeader
         Me.flowPanel.AutoScroll = True
         Me.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flowPanel.Location = New System.Drawing.Point(0, 0)
+        Me.flowPanel.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.flowPanel.Name = "flowPanel"
-        Me.flowPanel.Size = New System.Drawing.Size(808, 31)
+        Me.flowPanel.Size = New System.Drawing.Size(1481, 57)
         Me.flowPanel.TabIndex = 0
         '
         'TabHeader
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Transparent
         Me.Controls.Add(Me.flowPanel)
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Name = "TabHeader"
-        Me.Size = New System.Drawing.Size(808, 31)
+        Me.Size = New System.Drawing.Size(1481, 57)
         Me.ResumeLayout(False)
 
     End Sub

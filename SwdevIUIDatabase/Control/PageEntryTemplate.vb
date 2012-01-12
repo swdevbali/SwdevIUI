@@ -92,7 +92,7 @@ Public Class PageEntryTemplate
             'Actually I don't need this.. <==what a comment :))
             If INSERT_PARAMETER(2) IsNot Nothing Then kodeTransaksi = INSERT_PARAMETER(2) Else kodeTransaksi = INSERT_PARAMETER(1)
 
-            Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|add", kodeTransaksi, Session.vusername})
+            Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|add", kodeTransaksi, Session.vusername, Nothing})
         Else
             MessageBox.Show("Data gagal ditambahkan.")
         End If
@@ -201,7 +201,7 @@ Public Class PageEntryTemplate
         'If retval = DialogResult.Yes Then
         If Utils.exec_SP(PROCEDURE_MASTER, UPDATE_PARAMETER) Then
             'MessageBox.Show("Data berhasil diupdate.")
-            Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|edit", UPDATE_PARAMETER(2), Session.vusername})
+            Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|edit", UPDATE_PARAMETER(2), Session.vusername, Nothing})
         Else
             MessageBox.Show("Data gagal diupdate.")
         End If
