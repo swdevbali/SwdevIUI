@@ -102,6 +102,13 @@ Namespace My.Resources
             End Get
         End Property
         
+        Friend ReadOnly Property bg() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("bg", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property database_server() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("database_server", resourceCulture)

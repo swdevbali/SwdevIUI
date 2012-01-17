@@ -25,7 +25,7 @@ Partial Class PageEntryTemplate
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim CBlendItems1 As gLabel.cBlendItems = New gLabel.cBlendItems()
+        Dim CBlendItems2 As gLabel.cBlendItems = New gLabel.cBlendItems()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lblTitle = New gLabel.gLabel()
         Me.picTitle = New System.Windows.Forms.PictureBox()
@@ -39,7 +39,7 @@ Partial Class PageEntryTemplate
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.BackColor = System.Drawing.Color.Transparent
         Me.Panel1.Controls.Add(Me.lblTitle)
         Me.Panel1.Controls.Add(Me.picTitle)
         Me.Panel1.Controls.Add(Me.btnCancel)
@@ -47,21 +47,22 @@ Partial Class PageEntryTemplate
         Me.Panel1.Controls.Add(Me.btnSaveAndClose)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1023, 58)
         Me.Panel1.TabIndex = 35
         '
         'lblTitle
         '
+        Me.lblTitle.BackColor = System.Drawing.Color.Transparent
         Me.lblTitle.BorderWidth = 1.0!
         Me.lblTitle.FillType = gLabel.gLabel.eFillType.Solid
         Me.lblTitle.FillTypeLinear = System.Drawing.Drawing2D.LinearGradientMode.Vertical
         Me.lblTitle.Font = New System.Drawing.Font("Impact", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTitle.ForeColor = System.Drawing.Color.DodgerBlue
-        CBlendItems1.iColor = New System.Drawing.Color() {System.Drawing.Color.AliceBlue, System.Drawing.Color.RoyalBlue, System.Drawing.Color.Navy}
-        CBlendItems1.iPoint = New Single() {0.0!, 0.5!, 1.0!}
-        Me.lblTitle.ForeColorBlend = CBlendItems1
+        CBlendItems2.iColor = New System.Drawing.Color() {System.Drawing.Color.AliceBlue, System.Drawing.Color.RoyalBlue, System.Drawing.Color.Navy}
+        CBlendItems2.iPoint = New Single() {0.0!, 0.5!, 1.0!}
+        Me.lblTitle.ForeColorBlend = CBlendItems2
         Me.lblTitle.Glow = 12
         Me.lblTitle.GlowColor = System.Drawing.Color.DarkGreen
         Me.lblTitle.GlowState = False
@@ -81,7 +82,7 @@ Partial Class PageEntryTemplate
         'picTitle
         '
         Me.picTitle.Location = New System.Drawing.Point(5, 7)
-        Me.picTitle.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.picTitle.Margin = New System.Windows.Forms.Padding(4)
         Me.picTitle.Name = "picTitle"
         Me.picTitle.Size = New System.Drawing.Size(40, 45)
         Me.picTitle.TabIndex = 3
@@ -99,7 +100,7 @@ Partial Class PageEntryTemplate
         Me.btnCancel.Image = Global.SwdevIUIDatabase.My.Resources.Resources._4tutup
         Me.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCancel.Location = New System.Drawing.Point(919, 7)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(100, 45)
         Me.btnCancel.TabIndex = 2
@@ -118,7 +119,7 @@ Partial Class PageEntryTemplate
         Me.btnSaveAndAdd.Image = Global.SwdevIUIDatabase.My.Resources.Resources._1tambah
         Me.btnSaveAndAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSaveAndAdd.Location = New System.Drawing.Point(597, 9)
-        Me.btnSaveAndAdd.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSaveAndAdd.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSaveAndAdd.Name = "btnSaveAndAdd"
         Me.btnSaveAndAdd.Size = New System.Drawing.Size(152, 45)
         Me.btnSaveAndAdd.TabIndex = 1
@@ -138,7 +139,7 @@ Partial Class PageEntryTemplate
         Me.btnSaveAndClose.Image = Global.SwdevIUIDatabase.My.Resources.Resources.accept_item
         Me.btnSaveAndClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSaveAndClose.Location = New System.Drawing.Point(757, 9)
-        Me.btnSaveAndClose.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSaveAndClose.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSaveAndClose.Name = "btnSaveAndClose"
         Me.btnSaveAndClose.Size = New System.Drawing.Size(153, 45)
         Me.btnSaveAndClose.TabIndex = 0
@@ -154,9 +155,10 @@ Partial Class PageEntryTemplate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.Transparent
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "PageEntryTemplate"
         Me.Size = New System.Drawing.Size(1023, 719)
         Me.Panel1.ResumeLayout(False)

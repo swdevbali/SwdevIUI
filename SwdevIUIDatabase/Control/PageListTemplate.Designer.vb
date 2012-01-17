@@ -28,10 +28,17 @@ Partial Class PageListTemplate
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.dgvList = New System.Windows.Forms.DataGridView()
         Me.TextKataKunci = New System.Windows.Forms.TextBox()
         Me.ComCariBy = New System.Windows.Forms.ComboBox()
         Me.pnlTop = New System.Windows.Forms.Panel()
+        Me.Bar1 = New DevComponents.DotNetBar.Bar()
+        Me.ButtonItem9 = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem10 = New DevComponents.DotNetBar.ButtonItem()
+        Me.LabelItem1 = New DevComponents.DotNetBar.LabelItem()
+        Me.ButtonItem11 = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem12 = New DevComponents.DotNetBar.ButtonItem()
         Me.pnlExtended = New System.Windows.Forms.Panel()
         Me.pnlKonfirmasi = New System.Windows.Forms.Panel()
         Me.btnCancel = New System.Windows.Forms.Button()
@@ -45,6 +52,7 @@ Partial Class PageListTemplate
         Me.pnlForm = New System.Windows.Forms.Panel()
         CType(Me.dgvList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTop.SuspendLayout()
+        CType(Me.Bar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlKonfirmasi.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -54,64 +62,75 @@ Partial Class PageListTemplate
         Me.dgvList.AllowUserToDeleteRows = False
         Me.dgvList.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSeaGreen
         Me.dgvList.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.dgvList.BackgroundColor = System.Drawing.Color.White
         Me.dgvList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        Me.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 17.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSeaGreen
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvList.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 17.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightSeaGreen
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvList.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.dgvList.EnableHeadersVisualStyles = False
         Me.dgvList.GridColor = System.Drawing.Color.DarkKhaki
-        Me.dgvList.Location = New System.Drawing.Point(0, 215)
-        Me.dgvList.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.dgvList.Location = New System.Drawing.Point(0, 273)
+        Me.dgvList.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.dgvList.MultiSelect = False
         Me.dgvList.Name = "dgvList"
         Me.dgvList.ReadOnly = True
         Me.dgvList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.Padding = New System.Windows.Forms.Padding(5)
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvList.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Calibri", 17.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.Padding = New System.Windows.Forms.Padding(5)
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LemonChiffon
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvList.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvList.RowHeadersVisible = False
         Me.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvList.ShowEditingIcon = False
-        Me.dgvList.Size = New System.Drawing.Size(1141, 551)
+        Me.dgvList.Size = New System.Drawing.Size(1284, 574)
         Me.dgvList.TabIndex = 34
         '
         'TextKataKunci
         '
-        Me.TextKataKunci.Location = New System.Drawing.Point(368, 19)
-        Me.TextKataKunci.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.TextKataKunci.Location = New System.Drawing.Point(414, 21)
+        Me.TextKataKunci.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.TextKataKunci.Name = "TextKataKunci"
-        Me.TextKataKunci.Size = New System.Drawing.Size(153, 27)
+        Me.TextKataKunci.Size = New System.Drawing.Size(172, 28)
         Me.TextKataKunci.TabIndex = 24
         '
         'ComCariBy
         '
         Me.ComCariBy.FormattingEnabled = True
         Me.ComCariBy.Items.AddRange(New Object() {"-", "KODE", "NAMA", "SPESIALIS", "ALAMAT", "KOTA", "PROPINSI", "TELEPON", "EMAIL"})
-        Me.ComCariBy.Location = New System.Drawing.Point(181, 19)
-        Me.ComCariBy.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.ComCariBy.Location = New System.Drawing.Point(204, 21)
+        Me.ComCariBy.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.ComCariBy.Name = "ComCariBy"
-        Me.ComCariBy.Size = New System.Drawing.Size(175, 27)
+        Me.ComCariBy.Size = New System.Drawing.Size(196, 29)
         Me.ComCariBy.TabIndex = 23
         '
         'pnlTop
         '
-        Me.pnlTop.BackColor = System.Drawing.Color.White
+        Me.pnlTop.BackColor = System.Drawing.Color.Transparent
+        Me.pnlTop.Controls.Add(Me.Bar1)
         Me.pnlTop.Controls.Add(Me.pnlExtended)
         Me.pnlTop.Controls.Add(Me.pnlKonfirmasi)
         Me.pnlTop.Controls.Add(Me.btnCetak)
@@ -122,18 +141,66 @@ Partial Class PageListTemplate
         Me.pnlTop.Controls.Add(Me.ComCariBy)
         Me.pnlTop.Controls.Add(Me.Label12)
         Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlTop.Location = New System.Drawing.Point(0, 146)
-        Me.pnlTop.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.pnlTop.Location = New System.Drawing.Point(0, 161)
+        Me.pnlTop.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.pnlTop.Name = "pnlTop"
-        Me.pnlTop.Size = New System.Drawing.Size(1141, 69)
+        Me.pnlTop.Size = New System.Drawing.Size(1284, 112)
         Me.pnlTop.TabIndex = 33
+        '
+        'Bar1
+        '
+        Me.Bar1.DockSide = DevComponents.DotNetBar.eDockSide.Top
+        Me.Bar1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ButtonItem9, Me.ButtonItem10, Me.LabelItem1, Me.ButtonItem11, Me.ButtonItem12})
+        Me.Bar1.Location = New System.Drawing.Point(24, 77)
+        Me.Bar1.Name = "Bar1"
+        Me.Bar1.Size = New System.Drawing.Size(206, 25)
+        Me.Bar1.Stretch = True
+        Me.Bar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2003
+        Me.Bar1.TabIndex = 32
+        Me.Bar1.TabStop = False
+        Me.Bar1.Text = "Bar1"
+        '
+        'ButtonItem9
+        '
+        Me.ButtonItem9.ImageFixedSize = New System.Drawing.Size(16, 16)
+        Me.ButtonItem9.ImagePaddingHorizontal = 8
+        Me.ButtonItem9.Name = "ButtonItem9"
+        Me.ButtonItem9.Text = "|<"
+        '
+        'ButtonItem10
+        '
+        Me.ButtonItem10.ImageFixedSize = New System.Drawing.Size(16, 16)
+        Me.ButtonItem10.ImagePaddingHorizontal = 8
+        Me.ButtonItem10.Name = "ButtonItem10"
+        Me.ButtonItem10.Text = "<"
+        '
+        'LabelItem1
+        '
+        Me.LabelItem1.Name = "LabelItem1"
+        Me.LabelItem1.Text = "113/45.232"
+        Me.LabelItem1.TextAlignment = System.Drawing.StringAlignment.Center
+        Me.LabelItem1.Width = 100
+        '
+        'ButtonItem11
+        '
+        Me.ButtonItem11.ImageFixedSize = New System.Drawing.Size(16, 16)
+        Me.ButtonItem11.ImagePaddingHorizontal = 8
+        Me.ButtonItem11.Name = "ButtonItem11"
+        Me.ButtonItem11.Text = ">"
+        '
+        'ButtonItem12
+        '
+        Me.ButtonItem12.ImageFixedSize = New System.Drawing.Size(16, 16)
+        Me.ButtonItem12.ImagePaddingHorizontal = 8
+        Me.ButtonItem12.Name = "ButtonItem12"
+        Me.ButtonItem12.Text = ">|"
         '
         'pnlExtended
         '
-        Me.pnlExtended.Location = New System.Drawing.Point(21, 9)
-        Me.pnlExtended.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.pnlExtended.Location = New System.Drawing.Point(24, 8)
+        Me.pnlExtended.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.pnlExtended.Name = "pnlExtended"
-        Me.pnlExtended.Size = New System.Drawing.Size(521, 56)
+        Me.pnlExtended.Size = New System.Drawing.Size(586, 62)
         Me.pnlExtended.TabIndex = 31
         Me.pnlExtended.Visible = False
         '
@@ -142,10 +209,10 @@ Partial Class PageListTemplate
         Me.pnlKonfirmasi.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlKonfirmasi.Controls.Add(Me.btnCancel)
         Me.pnlKonfirmasi.Controls.Add(Me.btnSaveAndClose)
-        Me.pnlKonfirmasi.Location = New System.Drawing.Point(707, 9)
-        Me.pnlKonfirmasi.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.pnlKonfirmasi.Location = New System.Drawing.Point(795, 10)
+        Me.pnlKonfirmasi.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.pnlKonfirmasi.Name = "pnlKonfirmasi"
-        Me.pnlKonfirmasi.Size = New System.Drawing.Size(427, 56)
+        Me.pnlKonfirmasi.Size = New System.Drawing.Size(480, 62)
         Me.pnlKonfirmasi.TabIndex = 30
         Me.pnlKonfirmasi.Visible = False
         '
@@ -161,10 +228,10 @@ Partial Class PageListTemplate
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancel.Image = Global.SwdevIUIDatabase.My.Resources.Resources._4tutup
         Me.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCancel.Location = New System.Drawing.Point(171, 6)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.btnCancel.Location = New System.Drawing.Point(192, 7)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(101, 45)
+        Me.btnCancel.Size = New System.Drawing.Size(114, 50)
         Me.btnCancel.TabIndex = 8
         Me.btnCancel.Text = "&Cancel"
         Me.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -181,10 +248,10 @@ Partial Class PageListTemplate
         Me.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSaveAndClose.Image = Global.SwdevIUIDatabase.My.Resources.Resources.accept_item
         Me.btnSaveAndClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSaveAndClose.Location = New System.Drawing.Point(8, 4)
-        Me.btnSaveAndClose.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.btnSaveAndClose.Location = New System.Drawing.Point(9, 4)
+        Me.btnSaveAndClose.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.btnSaveAndClose.Name = "btnSaveAndClose"
-        Me.btnSaveAndClose.Size = New System.Drawing.Size(153, 45)
+        Me.btnSaveAndClose.Size = New System.Drawing.Size(172, 50)
         Me.btnSaveAndClose.TabIndex = 7
         Me.btnSaveAndClose.Text = "&Save and Close"
         Me.btnSaveAndClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -200,10 +267,10 @@ Partial Class PageListTemplate
         Me.btnCetak.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCetak.Image = Global.SwdevIUIDatabase.My.Resources.Resources._6print
         Me.btnCetak.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCetak.Location = New System.Drawing.Point(1035, 10)
-        Me.btnCetak.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.btnCetak.Location = New System.Drawing.Point(1164, 11)
+        Me.btnCetak.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.btnCetak.Name = "btnCetak"
-        Me.btnCetak.Size = New System.Drawing.Size(101, 47)
+        Me.btnCetak.Size = New System.Drawing.Size(114, 52)
         Me.btnCetak.TabIndex = 29
         Me.btnCetak.Text = "Cetak"
         Me.btnCetak.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -220,10 +287,10 @@ Partial Class PageListTemplate
         Me.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDel.Image = Global.SwdevIUIDatabase.My.Resources.Resources._3hapus
         Me.btnDel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnDel.Location = New System.Drawing.Point(925, 10)
-        Me.btnDel.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.btnDel.Location = New System.Drawing.Point(1041, 11)
+        Me.btnDel.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.btnDel.Name = "btnDel"
-        Me.btnDel.Size = New System.Drawing.Size(101, 47)
+        Me.btnDel.Size = New System.Drawing.Size(114, 52)
         Me.btnDel.TabIndex = 28
         Me.btnDel.Text = "Delete"
         Me.btnDel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -240,10 +307,10 @@ Partial Class PageListTemplate
         Me.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEdit.Image = Global.SwdevIUIDatabase.My.Resources.Resources._2edit
         Me.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnEdit.Location = New System.Drawing.Point(816, 10)
-        Me.btnEdit.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.btnEdit.Location = New System.Drawing.Point(918, 11)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(101, 47)
+        Me.btnEdit.Size = New System.Drawing.Size(114, 52)
         Me.btnEdit.TabIndex = 27
         Me.btnEdit.Text = "Edit"
         Me.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -260,10 +327,10 @@ Partial Class PageListTemplate
         Me.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAdd.Image = Global.SwdevIUIDatabase.My.Resources.Resources._1tambah
         Me.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAdd.Location = New System.Drawing.Point(707, 10)
-        Me.btnAdd.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.btnAdd.Location = New System.Drawing.Point(795, 11)
+        Me.btnAdd.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(101, 47)
+        Me.btnAdd.Size = New System.Drawing.Size(114, 52)
         Me.btnAdd.TabIndex = 26
         Me.btnAdd.Text = "Add"
         Me.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -273,10 +340,10 @@ Partial Class PageListTemplate
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(16, 25)
-        Me.Label12.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
+        Me.Label12.Location = New System.Drawing.Point(18, 28)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(157, 19)
+        Me.Label12.Size = New System.Drawing.Size(168, 21)
         Me.Label12.TabIndex = 14
         Me.Label12.Text = "Pencarian berdasarkan"
         '
@@ -289,25 +356,26 @@ Partial Class PageListTemplate
         '
         Me.pnlForm.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlForm.Location = New System.Drawing.Point(0, 0)
-        Me.pnlForm.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.pnlForm.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.pnlForm.Name = "pnlForm"
-        Me.pnlForm.Size = New System.Drawing.Size(1141, 146)
+        Me.pnlForm.Size = New System.Drawing.Size(1284, 161)
         Me.pnlForm.TabIndex = 35
         '
         'PageListTemplate
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 19.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.Transparent
         Me.Controls.Add(Me.dgvList)
         Me.Controls.Add(Me.pnlTop)
         Me.Controls.Add(Me.pnlForm)
-        Me.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
+        Me.Margin = New System.Windows.Forms.Padding(6, 4, 6, 4)
         Me.Name = "PageListTemplate"
-        Me.Size = New System.Drawing.Size(1141, 766)
+        Me.Size = New System.Drawing.Size(1284, 847)
         CType(Me.dgvList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlTop.ResumeLayout(False)
         Me.pnlTop.PerformLayout()
+        CType(Me.Bar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlKonfirmasi.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -327,5 +395,11 @@ Partial Class PageListTemplate
     Friend WithEvents btnCancel As System.Windows.Forms.Button
     Friend WithEvents btnSaveAndClose As System.Windows.Forms.Button
     Friend WithEvents pnlExtended As System.Windows.Forms.Panel
+    Friend WithEvents Bar1 As DevComponents.DotNetBar.Bar
+    Friend WithEvents ButtonItem9 As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents ButtonItem10 As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents LabelItem1 As DevComponents.DotNetBar.LabelItem
+    Friend WithEvents ButtonItem11 As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents ButtonItem12 As DevComponents.DotNetBar.ButtonItem
 
 End Class

@@ -26,12 +26,14 @@ Partial Class PageTemplate
         '
         'PageTemplate
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.DoubleBuffered = True
+        Me.Font = New System.Drawing.Font("Calibri", 17.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, CType(0, Byte))
+        Me.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.Name = "PageTemplate"
-        Me.Size = New System.Drawing.Size(767, 492)
+        Me.Size = New System.Drawing.Size(828, 533)
         Me.ResumeLayout(False)
 
     End Sub

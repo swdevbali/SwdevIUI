@@ -491,6 +491,32 @@ Public Class Utils
         dt.Dispose()
     End Sub
 
+    Shared Function execQuery(ByVal query As String) As String
+        Dim con As NetMysql = getConnection()
+        Dim errMsg As String = ""
+        con.MySqlExecuteNonQuery(query, errMsg)
+
+        If errMsg <> "" Then
+            Return "ERROR : " & errMsg & " : " & query
+        End If
+
+        Return "OK : " & query
+    End Function
+    'thanks to http://www.java2s.com/Code/VB/Database-ADO.net/PopulateDatafromdatatable.htm
+    Shared Function getMysqlData(ByVal query As String, ByRef dt As DataTable) As String
+        Dim con As NetMysql = getConnection()
+        Dim errMsg As String = ""
+        Dim ds As DataSet = con.getMySqlData(query, errMsg)
+
+        If errMsg <> "" Then
+
+            Return "ERROR : " & errMsg & " : " & query
+        End If
+        dt = ds.Tables(0)
+        Return "OK : " & query
+
+    End Function
+
 End Class
 
 

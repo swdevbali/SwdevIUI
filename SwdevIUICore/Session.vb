@@ -23,4 +23,6 @@
 
     Public Shared Property serverberkas As String
 
+    Shared Property activeView As PageTemplate
+
 End Class

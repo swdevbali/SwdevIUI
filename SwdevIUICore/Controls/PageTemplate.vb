@@ -21,6 +21,7 @@ Public Class PageTemplate
             value.View = View.Details
             value.ShowGroups = True
             m_lvPageActivities = value
+            m_lvPageActivities.View = View.Tile
         End Set
     End Property
 
@@ -51,7 +52,7 @@ Public Class PageTemplate
     End Sub
 
     Overridable Sub OnEnterView()
-
+        Session.activeView = Me
     End Sub
 
 End Class

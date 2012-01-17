@@ -24,10 +24,15 @@ Public Class DatabaseSettingsPage
     End Sub
 
     Private Sub DatabaseSettingsPage_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        prepareDisplay()
+    End Sub
+
+    Sub prepareDisplay()
         txtDatabase.Text = Session.dbname
         txtHost.Text = Session.dbhost
         txtPassword.Text = Session.dbpassword
         txtPort.Text = Session.dbport
         txtUser.Text = Session.dbuser
     End Sub
+
 End Class

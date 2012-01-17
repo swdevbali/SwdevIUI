@@ -27,7 +27,7 @@ Partial Class PopupWindow
         '
         'pnlUtama
         '
-        Me.pnlUtama.BackColor = System.Drawing.Color.Beige
+        Me.pnlUtama.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.pnlUtama.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlUtama.Location = New System.Drawing.Point(0, 0)
         Me.pnlUtama.Name = "pnlUtama"
@@ -39,6 +39,7 @@ Partial Class PopupWindow
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Beige
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(614, 417)
         Me.Controls.Add(Me.pnlUtama)
         Me.Name = "PopupWindow"
