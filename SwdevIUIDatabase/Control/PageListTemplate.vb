@@ -216,7 +216,7 @@ Public Class PageListTemplate
         'todo : still refreshing the 2nd item will make it on top
         If dgvList.Rows.Count > 0 And lastrow >= 0 Then dgvList.Rows(lastrow).Selected = True
     End Sub
-    Dim dataCount As Integer
+
     Public Overrides Sub refreshDataGrid()
         MyBase.refreshDataGrid()
         Dim dt As New DataTable
@@ -426,6 +426,7 @@ Public Class PageListTemplate
     End Sub
 
 #Region "Pagination"
+    Protected dataCount As Integer
     Protected pageLength As Integer = 5
     Protected pagePart As Integer = 0
     Protected COUNT_PARAMETER As Object()
