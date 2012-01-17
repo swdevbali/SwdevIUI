@@ -11,6 +11,7 @@ Public Class PageTemplate
             Return m_lvPageActivities
         End Get
         Set(ByVal value As ListView)
+            If value Is Nothing Then Return
             'default value
             value.Columns.Clear()
             value.Columns.Add("Task")

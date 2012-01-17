@@ -4,9 +4,8 @@ Imports SwdevIUICore
 
 Public Class PageListTemplate
     Inherits PageTemplate
-
-
     Protected hashCheckedRowIndex As New Hashtable
+
     Property showAddButton As Boolean = True
     Property showEditButton As Boolean = True
     Property showDeleteButton As Boolean = True
@@ -217,13 +216,21 @@ Public Class PageListTemplate
         'todo : still refreshing the 2nd item will make it on top
         If dgvList.Rows.Count > 0 And lastrow >= 0 Then dgvList.Rows(lastrow).Selected = True
     End Sub
+    Dim dataCount As Integer
     Public Overrides Sub refreshDataGrid()
         MyBase.refreshDataGrid()
         Dim dt As New DataTable
+        prepareSelectParamater()
         If SELECT_PARAMETER IsNot Nothing Then
             If Utils.executeSP(PROCEDURE_MASTER, SELECT_PARAMETER, dt) Then
-
-                hashCheckedRowIndex.clear()
+                prepareCountParameter()
+                If COUNT_PARAMETER IsNot Nothing Then
+                    Dim dtCount As New DataTable
+                    Utils.executeSP(PROCEDURE_MASTER, COUNT_PARAMETER, dtCount)
+                    If dtCount.Rows.Count > 0 Then dataCount = dtCount.Rows(0).Item(0) Else dataCount = "~"
+                End If
+                lblPagination.Text = getPageStart() + 1 & "/" & dataCount
+                hashCheckedRowIndex.Clear()
                 If dt.Rows.Count > 0 Then
                     dgvList.Columns.Clear()
                     dgvList.DataSource = dt
@@ -243,6 +250,8 @@ Public Class PageListTemplate
                     dgvList.Columns.Clear()
                     dgvList.DataSource = Nothing
                 End If
+            Else
+
             End If
         End If
     End Sub
@@ -416,5 +425,45 @@ Public Class PageListTemplate
         End If
     End Sub
 
+#Region "Pagination"
+    Protected pageLength As Integer = 5
+    Protected pagePart As Integer = 0
+    Protected COUNT_PARAMETER As Object()
+
+    Private Sub btnPrev_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPrev.Click
+        If pagePart > 0 Then pagePart = pagePart - 1
+        refreshDataGrid()
+    End Sub
+
+    Private Sub btnNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNext.Click
+        Dim max As Integer = (dataCount / pageLength) - 1
+
+        pagePart = pagePart + 1
+        If pagePart > max Then pagePart = max
+        refreshDataGrid()
+    End Sub
+
+    Private Sub btnFirst_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFirst.Click
+        pagePart = 0
+        refreshDataGrid()
+    End Sub
+
+    Protected Function getPageStart() As Integer
+        Return pagePart * pageLength
+    End Function
+
+    Protected Overridable Sub prepareCountParameter()
+    End Sub
+
+    Protected Overridable Sub prepareSelectParamater()
+
+    End Sub
+
+    Private Sub btnLast_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLast.Click
+        pagePart = (dataCount / pageLength) - 1
+        refreshDataGrid()
+    End Sub
+
+#End Region
     
 End Class

@@ -34,11 +34,11 @@ Partial Class PageListTemplate
         Me.ComCariBy = New System.Windows.Forms.ComboBox()
         Me.pnlTop = New System.Windows.Forms.Panel()
         Me.Bar1 = New DevComponents.DotNetBar.Bar()
-        Me.ButtonItem9 = New DevComponents.DotNetBar.ButtonItem()
-        Me.ButtonItem10 = New DevComponents.DotNetBar.ButtonItem()
-        Me.LabelItem1 = New DevComponents.DotNetBar.LabelItem()
-        Me.ButtonItem11 = New DevComponents.DotNetBar.ButtonItem()
-        Me.ButtonItem12 = New DevComponents.DotNetBar.ButtonItem()
+        Me.btnFirst = New DevComponents.DotNetBar.ButtonItem()
+        Me.btnPrev = New DevComponents.DotNetBar.ButtonItem()
+        Me.lblPagination = New DevComponents.DotNetBar.LabelItem()
+        Me.btnNext = New DevComponents.DotNetBar.ButtonItem()
+        Me.btnLast = New DevComponents.DotNetBar.ButtonItem()
         Me.pnlExtended = New System.Windows.Forms.Panel()
         Me.pnlKonfirmasi = New System.Windows.Forms.Panel()
         Me.btnCancel = New System.Windows.Forms.Button()
@@ -150,7 +150,7 @@ Partial Class PageListTemplate
         'Bar1
         '
         Me.Bar1.DockSide = DevComponents.DotNetBar.eDockSide.Top
-        Me.Bar1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ButtonItem9, Me.ButtonItem10, Me.LabelItem1, Me.ButtonItem11, Me.ButtonItem12})
+        Me.Bar1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnFirst, Me.btnPrev, Me.lblPagination, Me.btnNext, Me.btnLast})
         Me.Bar1.Location = New System.Drawing.Point(24, 77)
         Me.Bar1.Name = "Bar1"
         Me.Bar1.Size = New System.Drawing.Size(206, 25)
@@ -160,40 +160,40 @@ Partial Class PageListTemplate
         Me.Bar1.TabStop = False
         Me.Bar1.Text = "Bar1"
         '
-        'ButtonItem9
+        'btnFirst
         '
-        Me.ButtonItem9.ImageFixedSize = New System.Drawing.Size(16, 16)
-        Me.ButtonItem9.ImagePaddingHorizontal = 8
-        Me.ButtonItem9.Name = "ButtonItem9"
-        Me.ButtonItem9.Text = "|<"
+        Me.btnFirst.ImageFixedSize = New System.Drawing.Size(16, 16)
+        Me.btnFirst.ImagePaddingHorizontal = 8
+        Me.btnFirst.Name = "btnFirst"
+        Me.btnFirst.Text = "|<"
         '
-        'ButtonItem10
+        'btnPrev
         '
-        Me.ButtonItem10.ImageFixedSize = New System.Drawing.Size(16, 16)
-        Me.ButtonItem10.ImagePaddingHorizontal = 8
-        Me.ButtonItem10.Name = "ButtonItem10"
-        Me.ButtonItem10.Text = "<"
+        Me.btnPrev.ImageFixedSize = New System.Drawing.Size(16, 16)
+        Me.btnPrev.ImagePaddingHorizontal = 8
+        Me.btnPrev.Name = "btnPrev"
+        Me.btnPrev.Text = "<"
         '
-        'LabelItem1
+        'lblPagination
         '
-        Me.LabelItem1.Name = "LabelItem1"
-        Me.LabelItem1.Text = "113/45.232"
-        Me.LabelItem1.TextAlignment = System.Drawing.StringAlignment.Center
-        Me.LabelItem1.Width = 100
+        Me.lblPagination.Name = "lblPagination"
+        Me.lblPagination.Text = "113/45.232"
+        Me.lblPagination.TextAlignment = System.Drawing.StringAlignment.Center
+        Me.lblPagination.Width = 100
         '
-        'ButtonItem11
+        'btnNext
         '
-        Me.ButtonItem11.ImageFixedSize = New System.Drawing.Size(16, 16)
-        Me.ButtonItem11.ImagePaddingHorizontal = 8
-        Me.ButtonItem11.Name = "ButtonItem11"
-        Me.ButtonItem11.Text = ">"
+        Me.btnNext.ImageFixedSize = New System.Drawing.Size(16, 16)
+        Me.btnNext.ImagePaddingHorizontal = 8
+        Me.btnNext.Name = "btnNext"
+        Me.btnNext.Text = ">"
         '
-        'ButtonItem12
+        'btnLast
         '
-        Me.ButtonItem12.ImageFixedSize = New System.Drawing.Size(16, 16)
-        Me.ButtonItem12.ImagePaddingHorizontal = 8
-        Me.ButtonItem12.Name = "ButtonItem12"
-        Me.ButtonItem12.Text = ">|"
+        Me.btnLast.ImageFixedSize = New System.Drawing.Size(16, 16)
+        Me.btnLast.ImagePaddingHorizontal = 8
+        Me.btnLast.Name = "btnLast"
+        Me.btnLast.Text = ">|"
         '
         'pnlExtended
         '
@@ -396,10 +396,10 @@ Partial Class PageListTemplate
     Friend WithEvents btnSaveAndClose As System.Windows.Forms.Button
     Friend WithEvents pnlExtended As System.Windows.Forms.Panel
     Friend WithEvents Bar1 As DevComponents.DotNetBar.Bar
-    Friend WithEvents ButtonItem9 As DevComponents.DotNetBar.ButtonItem
-    Friend WithEvents ButtonItem10 As DevComponents.DotNetBar.ButtonItem
-    Friend WithEvents LabelItem1 As DevComponents.DotNetBar.LabelItem
-    Friend WithEvents ButtonItem11 As DevComponents.DotNetBar.ButtonItem
-    Friend WithEvents ButtonItem12 As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents btnFirst As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents btnPrev As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents lblPagination As DevComponents.DotNetBar.LabelItem
+    Friend WithEvents btnNext As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents btnLast As DevComponents.DotNetBar.ButtonItem
 
 End Class
