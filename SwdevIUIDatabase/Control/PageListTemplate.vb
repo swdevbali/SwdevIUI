@@ -342,6 +342,7 @@ Public Class PageListTemplate
         If e.KeyCode = Keys.Escape Then
             ComCariBy.SelectedIndex = 0
             TextKataKunci.Text = ""
+            refreshDataGrid()
         End If
     End Sub
 
