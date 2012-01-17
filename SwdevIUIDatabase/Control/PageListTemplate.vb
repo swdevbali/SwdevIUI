@@ -10,7 +10,6 @@ Public Class PageListTemplate
     Property showEditButton As Boolean = True
     Property showDeleteButton As Boolean = True
 
-    Property PROCEDURE_SEARCH As String
 
     Property FORM_ENTRY_NAME As String
 
@@ -21,8 +20,6 @@ Public Class PageListTemplate
     Property SELECT_PARAMETER As Object()
 
     Property DELETE_PARAMETER As Object()
-
-    Property SEARCH_PARAMETER As Object()
     Dim WithEvents clsView As clsReportPreview
     Public Event EnterReportPage As System.EventHandler
 
@@ -36,21 +33,78 @@ Public Class PageListTemplate
 
     Public Property ExtendedPanelContent As UserControl
 
-    Public Sub RefreshTablePencarian(ByVal namakolom As String, ByVal katakunci As String)
+#Region "Pencarian Data"
+    Property PROCEDURE_SEARCH As String
+    Property SEARCH_PARAMETER As Object()
+
+    Sub defaultAllColumn(ByVal tabel As String)
+        Dim dt As New DataTable
+        If Utils.executeSP("proc_showallcolumn", New Object() {tabel}, dt) Then
+            ComCariBy.Items.Clear()
+            ComCariBy.Items.Add("--Pilih kolom pencarian--")
+            For Each row As DataRow In dt.Rows
+                ComCariBy.Items.Add(row(0))
+            Next
+        End If
+
+
+    End Sub
+
+    Private Sub Timer2_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer2.Tick
+        timerCari = timerCari + 1
+        If ComCariBy.SelectedIndex = 0 Then
+            Timer2.Enabled = False
+            refreshDataGrid()
+            Return
+        End If
+        If timerCari >= 1 Then
+            Timer2.Enabled = False
+            pagePart = 0
+            doPencarianData()
+        End If
+    End Sub
+
+    Overridable Sub prepareSearchParameter(ByVal namakolom As String, ByVal katakunci As String)
+        'default to this (old Cosmedic)
+        SEARCH_PARAMETER = New Object() {"search", namakolom, katakunci, getPageStart(), pageLength}
+    End Sub
+
+    Protected Overridable Sub prepareCountPencarianParameter(ByVal namakolom As String, ByVal katakunci As String)
+        COUNT_PARAMETER = New Object() {"count", namakolom, katakunci, Nothing, Nothing}
+    End Sub
+    Public Sub RefreshDataGridPencarian(ByVal namakolom As String, ByVal katakunci As String)
         Dim dt As New DataTable
         'Dim dsrole As New DataSet
         prepareSearchParameter(namakolom, katakunci)
 
         If Utils.executeSP(PROCEDURE_SEARCH, SEARCH_PARAMETER, dt) Then
+
+
+            prepareCountPencarianParameter(namakolom, katakunci)
+            If COUNT_PARAMETER IsNot Nothing Then
+                Dim dtCount As New DataTable
+                Utils.executeSP(PROCEDURE_SEARCH, COUNT_PARAMETER, dtCount)
+                If dtCount.Rows.Count > 0 Then dataCount = dtCount.Rows(0).Item(0) Else dataCount = "~"
+            End If
+            lblPagination.Text = getPageStart() + 1 & "/" & dataCount
+
+
             If dt IsNot Nothing Then
                 dgvList.DataSource = dt
             End If
         End If
     End Sub
-    Private Sub btnCari_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        RefreshTablePencarian(ComCariBy.Text, TextKataKunci.Text)
+
+    Private Sub doPencarianData()
+        Me.Cursor = Cursors.WaitCursor
+        RefreshDataGridPencarian(ComCariBy.Text, TextKataKunci.Text)
+        Me.Cursor = Cursors.Default
     End Sub
 
+
+#End Region
+
+#Region "CRUD"
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
 
         If Not isEntryEmbedded Then
@@ -206,6 +260,7 @@ Public Class PageListTemplate
             MsgBox(ex.Message)
         End Try
     End Sub
+#End Region
     Public Overrides Sub Refresh()
         MyBase.Refresh()
         Dim lastrow As Integer = -1
@@ -223,6 +278,7 @@ Public Class PageListTemplate
         prepareSelectParamater()
         If SELECT_PARAMETER IsNot Nothing Then
             If Utils.executeSP(PROCEDURE_MASTER, SELECT_PARAMETER, dt) Then
+
                 prepareCountParameter()
                 If COUNT_PARAMETER IsNot Nothing Then
                     Dim dtCount As New DataTable
@@ -230,6 +286,7 @@ Public Class PageListTemplate
                     If dtCount.Rows.Count > 0 Then dataCount = dtCount.Rows(0).Item(0) Else dataCount = "~"
                 End If
                 lblPagination.Text = getPageStart() + 1 & "/" & dataCount
+
                 hashCheckedRowIndex.Clear()
                 If dt.Rows.Count > 0 Then
                     dgvList.Columns.Clear()
@@ -270,19 +327,20 @@ Public Class PageListTemplate
 
     End Sub
 
-    Overridable Sub prepareSearchParameter(ByVal namakolom As String, ByVal katakunci As String)
-        'default to this (old Cosmedic)
-        SEARCH_PARAMETER = New Object() {namakolom, katakunci}
-    End Sub
 
 
-
+    Dim timerCari As Integer
     Private Sub TextKataKunci_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextKataKunci.TextChanged
-        btnCari_Click(Nothing, Nothing)
+        If ComCariBy.SelectedIndex <= 0 Then Return
+        Timer2.Enabled = False
+        timerCari = 0
+        Timer2.Enabled = True
+
     End Sub
 
     Private Sub TextKataKunci_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextKataKunci.KeyDown
         If e.KeyCode = Keys.Escape Then
+            ComCariBy.SelectedIndex = 0
             TextKataKunci.Text = ""
         End If
     End Sub
@@ -293,17 +351,6 @@ Public Class PageListTemplate
         InitializeComponent()
 
         'default to list all column
-
-    End Sub
-    Sub defaultAllColumn(ByVal tabel As String)
-        Dim dt As New DataTable
-        If Utils.executeSP("proc_showallcolumn", New Object() {tabel}, dt) Then
-            ComCariBy.Items.Clear()
-            For Each row As DataRow In dt.Rows
-                ComCariBy.Items.Add(row(0))
-            Next
-        End If
-
 
     End Sub
 
@@ -399,6 +446,7 @@ Public Class PageListTemplate
         End If
     End Sub
 
+#Region "CheckBox Column Header"
     Private Sub dgvList_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvList.CellContentClick
         If (e.ColumnIndex = 0) Then
             dgvList.Rows(e.RowIndex).Cells(0).Value = Not dgvList.Rows(e.RowIndex).Cells(0).Value
@@ -424,16 +472,21 @@ Public Class PageListTemplate
             hashCheckedRowIndex.Remove(e.RowIndex)
         End If
     End Sub
+#End Region
 
 #Region "Pagination"
     Protected dataCount As Integer
-    Protected pageLength As Integer = 5
+    Protected pageLength As Integer = 20
     Protected pagePart As Integer = 0
     Protected COUNT_PARAMETER As Object()
-
+    Public Overrides Sub OnEnterView()
+        MyBase.OnEnterView()
+        ComCariBy.SelectedIndex = -1
+        TextKataKunci.Text = ""
+    End Sub
     Private Sub btnPrev_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPrev.Click
         If pagePart > 0 Then pagePart = pagePart - 1
-        refreshDataGrid()
+        If ComCariBy.SelectedIndex <= 0 Then refreshDataGrid() Else doPencarianData()
     End Sub
 
     Private Sub btnNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNext.Click
@@ -441,12 +494,13 @@ Public Class PageListTemplate
 
         pagePart = pagePart + 1
         If pagePart > max Then pagePart = max
-        refreshDataGrid()
+        If ComCariBy.SelectedIndex <= 0 Then refreshDataGrid() Else doPencarianData()
+
     End Sub
 
     Private Sub btnFirst_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFirst.Click
         pagePart = 0
-        refreshDataGrid()
+        If ComCariBy.SelectedIndex <= 0 Then refreshDataGrid() Else doPencarianData()
     End Sub
 
     Protected Function getPageStart() As Integer
@@ -462,9 +516,10 @@ Public Class PageListTemplate
 
     Private Sub btnLast_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLast.Click
         pagePart = (dataCount / pageLength) - 1
-        refreshDataGrid()
+        If ComCariBy.SelectedIndex <= 0 Then refreshDataGrid() Else doPencarianData()
     End Sub
 
 #End Region
-    
+
+
 End Class
