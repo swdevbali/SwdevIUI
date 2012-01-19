@@ -5,6 +5,7 @@
     Shared ReadOnly Property Item(ByVal key As String) As PageTemplate
         Get
             'borrowed from http://www.codeproject.com/KB/vb/DynamicFactoryDemo.aspx
+            If key Is Nothing Then Return Nothing
             Dim className As String = m_page_class(key)
             If m_pages(key) Is Nothing And className IsNot Nothing Then
                 Dim page As PageTemplate

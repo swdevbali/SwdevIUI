@@ -517,6 +517,19 @@ Public Class Utils
 
     End Function
 
+    Shared Sub fillAutocomplete(ByRef autoComplete As AutoCompleteStringCollection, ByVal proc As String, ByVal param As Object())
+        Dim dt As New DataTable
+        executeSP(proc, param, dt)
+        autoComplete.Clear()
+        If dt.Rows.Count > 0 Then
+            For i As Integer = 0 To dt.Rows.Count - 1
+                autoComplete.Add(dt.Rows(i).Item(0))
+            Next
+        End If
+        dt.Dispose()
+    End Sub
+
+  
 End Class
 
 

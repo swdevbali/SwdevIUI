@@ -5,6 +5,8 @@ Imports SwdevIUICore
 Public Class clsReportPreview
     Dim rep As New ReportDocument
     Dim sRptLocation As String
+    Dim params As ParameterFieldDefinitions
+
     Public Event EnterReportPage As System.EventHandler
 
     Public Sub New(ByVal dsPrinting As DataTable, ByVal sReportPath As String)
@@ -16,12 +18,19 @@ Public Class clsReportPreview
         rep.Load(sReportPath)
         rep.SetDataSource(dsPrinting)
         sRptLocation = sReportPath
+
+        '
+
     End Sub
+
+    Event PopulateReport(ByRef rep As ReportDocument)
 
     Public Sub ShowReport()
 
         Dim report As ReportViewerPage = Pages.Item("reportPage")
+
         report.rptLocation = sRptLocation
+        RaiseEvent PopulateReport(rep)
         report.CrystalReportViewer1.ReportSource = rep
         EventBroadcaster.doEnterReportPage(report)
         'RaiseEvent EnterReportPage(report, New EventArgs()) 'EventBroadcaster.doEnterReportPage(report)

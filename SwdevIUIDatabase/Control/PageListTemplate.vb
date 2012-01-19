@@ -284,8 +284,12 @@ Public Class PageListTemplate
                     Dim dtCount As New DataTable
                     Utils.executeSP(PROCEDURE_MASTER, COUNT_PARAMETER, dtCount)
                     If dtCount.Rows.Count > 0 Then dataCount = dtCount.Rows(0).Item(0) Else dataCount = "~"
+                Else
+                    dataCount = -1
                 End If
-                lblPagination.Text = getPageStart() + 1 & "/" & dataCount
+                Dim sDataCount As String = dataCount
+                If sDataCount = "-1" Then sDataCount = "~"
+                lblPagination.Text = getPageStart() + 1 & "/" & sDataCount
 
                 hashCheckedRowIndex.Clear()
                 If dt.Rows.Count > 0 Then
