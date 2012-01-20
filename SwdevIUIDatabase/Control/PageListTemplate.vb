@@ -214,7 +214,7 @@ Public Class PageListTemplate
                 prepareDeleteParameter(kode)
                 If Utils.exec_SP(PROCEDURE_MASTER, DELETE_PARAMETER) Then
                     'MessageBox.Show("Data berhasil dihapus.")
-                    Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|delete", nama, Session.vusername, Nothing})
+                    Utils.exec_SP("proc_zloguser", New Object() {"add", PROCEDURE_MASTER & "|delete", nama, Session.vusername, -1})
                     'refreshDataGrid()
                     lastrow = lastrow - 1
                     If lastrow < 0 Then lastrow = 0
