@@ -207,7 +207,14 @@ Public Class Utils
     End Function
 
     Public Shared Function getConnection() As NetMysql
-
+        'If My.Computer.Network.Ping(Session.dbhost) = False Then
+        '    Return Nothing
+        'End If
+        Session.dbhost = "localhost"
+        Session.dbname = "passbandara"
+        Session.dbpassword = ""
+        Session.dbport = "3306"
+        Session.dbuser = "root"
         Dim ErrMsg As String = ""
         Dim MySQL As NetMysql = Nothing
         Try
@@ -523,7 +530,7 @@ Public Class Utils
         autoComplete.Clear()
         If dt.Rows.Count > 0 Then
             For i As Integer = 0 To dt.Rows.Count - 1
-                autoComplete.Add(dt.Rows(i).Item(0))
+                autoComplete.Add(dt.Rows(i).Item(0).ToString)
             Next
         End If
         dt.Dispose()
