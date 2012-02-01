@@ -57,6 +57,9 @@ Public Class PageEntryTemplate
         If InstancePageListTemplate IsNot Nothing AndAlso InstancePageListTemplate.isEntryEmbedded Then
             btnSaveAndClose.Visible = False
             btnCancel.Visible = False
+        Else
+            btnCancel.Visible = True
+            btnSaveAndClose.Visible = True
         End If
     End Sub
 
@@ -67,13 +70,14 @@ Public Class PageEntryTemplate
             doUpdateData()
             doAfterUpdateData()
         End If
-        result = DialogResult.OK
+        result = DialogResult.OK 'TOFIX : this should be deleted
         If InstancePageListTemplate.isEntryEmbedded Then
             InstancePageListTemplate.refreshDataGrid()
             InstancePageListTemplate.dgvList.Focus()
             prepareEnabled(False)
             InstancePageListTemplate.selectGrid()
         End If
+        ParentForm.DialogResult = DialogResult.OK
         'Me.ParentForm.Hide()
 
     End Sub
@@ -212,9 +216,11 @@ Public Class PageEntryTemplate
         If Not newItemAdded Then
             ParentForm.DialogResult = DialogResult.Cancel
             result = DialogResult.Cancel
+            'ParentForm.DialogResult = DialogResult.Cancel
         Else
             ParentForm.DialogResult = DialogResult.OK
             result = DialogResult.OK
+            'ParentForm.DialogResult = DialogResult.OK
         End If
         newItemAdded = False
         If InstancePageListTemplate IsNot Nothing AndAlso Not InstancePageListTemplate.isEntryEmbedded Then

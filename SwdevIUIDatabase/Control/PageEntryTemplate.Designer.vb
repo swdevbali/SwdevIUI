@@ -49,7 +49,7 @@ Partial Class PageEntryTemplate
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1023, 58)
+        Me.Panel1.Size = New System.Drawing.Size(1021, 58)
         Me.Panel1.TabIndex = 35
         '
         'lblTitle
@@ -99,7 +99,7 @@ Partial Class PageEntryTemplate
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancel.Image = Global.SwdevIUIDatabase.My.Resources.Resources._4tutup
         Me.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCancel.Location = New System.Drawing.Point(919, 7)
+        Me.btnCancel.Location = New System.Drawing.Point(811, 9)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(4)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(100, 45)
@@ -118,7 +118,7 @@ Partial Class PageEntryTemplate
         Me.btnSaveAndAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSaveAndAdd.Image = Global.SwdevIUIDatabase.My.Resources.Resources._1tambah
         Me.btnSaveAndAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSaveAndAdd.Location = New System.Drawing.Point(597, 9)
+        Me.btnSaveAndAdd.Location = New System.Drawing.Point(489, 9)
         Me.btnSaveAndAdd.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSaveAndAdd.Name = "btnSaveAndAdd"
         Me.btnSaveAndAdd.Size = New System.Drawing.Size(152, 45)
@@ -136,9 +136,9 @@ Partial Class PageEntryTemplate
         Me.btnSaveAndClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow
         Me.btnSaveAndClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.YellowGreen
         Me.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSaveAndClose.Image = Global.SwdevIUIDatabase.My.Resources.Resources.accept_item
+        Me.btnSaveAndClose.Image = Global.SwdevIUIDatabase.My.Resources.Resources._1tambah
         Me.btnSaveAndClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSaveAndClose.Location = New System.Drawing.Point(757, 9)
+        Me.btnSaveAndClose.Location = New System.Drawing.Point(649, 9)
         Me.btnSaveAndClose.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSaveAndClose.Name = "btnSaveAndClose"
         Me.btnSaveAndClose.Size = New System.Drawing.Size(153, 45)
@@ -160,7 +160,7 @@ Partial Class PageEntryTemplate
         Me.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "PageEntryTemplate"
-        Me.Size = New System.Drawing.Size(1023, 719)
+        Me.Size = New System.Drawing.Size(1021, 205)
         Me.Panel1.ResumeLayout(False)
         CType(Me.picTitle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
