@@ -18,9 +18,14 @@ Public Class clsReportPreview
         rep.Load(sReportPath)
         rep.SetDataSource(dsPrinting)
         sRptLocation = sReportPath
-
-        '
-
+    End Sub
+    Public Sub New(ByVal sReportPath As String)
+        If Not IO.File.Exists(sReportPath) Then
+            Throw (New Exception("Unable to locate report file:" & _
+              vbCrLf & sReportPath))
+        End If
+        rep.Load(sReportPath)
+        sRptLocation = sReportPath
     End Sub
 
     Event PopulateReport(ByRef rep As ReportDocument)
