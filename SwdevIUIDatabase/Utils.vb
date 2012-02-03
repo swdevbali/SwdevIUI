@@ -210,17 +210,17 @@ Public Class Utils
         '    Return Nothing
         'End If
         'AdBandara
-        'Session.dbhost = "192.168.10.1" '"localhost"
-        'Session.dbname = "passbandara"
-        'Session.dbpassword = "passbandara" '""
-        'Session.dbport = "3307" '"3306"
-        'Session.dbuser = "adbandara" '"root"
-
-        Session.dbhost = "localhost"
+        Session.dbhost = "192.168.10.1" '"localhost"
         Session.dbname = "passbandara"
-        Session.dbpassword = ""
-        Session.dbport = "3306"
-        Session.dbuser = "root"
+        Session.dbpassword = "passbandara" '""
+        Session.dbport = "3307" '"3306"
+        Session.dbuser = "adbandara" '"root"
+
+        'Session.dbhost = "localhost"
+        'Session.dbname = "passbandara"
+        'Session.dbpassword = ""
+        'Session.dbport = "3306"
+        'Session.dbuser = "root"
 
         Dim ErrMsg As String = ""
         Dim MySQL As NetMysql = Nothing

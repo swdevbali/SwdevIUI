@@ -24,7 +24,7 @@ Public Class Eufrat
         Try
             hasilPing = My.Computer.Network.Ping(MasterMachineIP)
         Catch ex As Exception
-            MsgBox(ex.Message)
+            'MsgBox(ex.Message)
         End Try
         If hasilPing Then
             'MsgBox(MasterMachineIP & " is on, checking whether the file is the latest one")
