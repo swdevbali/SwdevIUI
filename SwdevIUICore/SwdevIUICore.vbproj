@@ -113,6 +113,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Session.vb" />
+    <Compile Include="UtilsCore.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\BreadCrumb.resx">

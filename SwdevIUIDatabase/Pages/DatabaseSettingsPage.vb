@@ -7,12 +7,7 @@ Public Class DatabaseSettingsPage
     Private Sub btnTestKoneksi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTestKoneksi.Click
 
 
-        Session.dbhost = txtHost.Text
-        Session.dbport = txtPort.Text
-        Session.dbuser = txtUser.Text
-        Session.dbpassword = txtPassword.Text
-        Session.dbname = txtDatabase.Text
-
+        saveDatabaseSetting()
 
         'Utils.init(My.Settings.dbname, My.Settings.dbhost, My.Settings.dbuser, My.Settings.dbpassword, My.Settings.dbport)
         If Utils.isConnected() Then
@@ -33,6 +28,15 @@ Public Class DatabaseSettingsPage
         txtPassword.Text = Session.dbpassword
         txtPort.Text = Session.dbport
         txtUser.Text = Session.dbuser
+    End Sub
+
+    Public Sub saveDatabaseSetting()
+        Session.dbhost = txtHost.Text
+        Session.dbport = txtPort.Text
+        Session.dbuser = txtUser.Text
+        Session.dbpassword = txtPassword.Text
+        Session.dbname = txtDatabase.Text
+        Session.saveDatabaseConfigurationToRegistry()
     End Sub
 
 End Class
